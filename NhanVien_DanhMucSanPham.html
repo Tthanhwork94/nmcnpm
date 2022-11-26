@@ -12,6 +12,9 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="listProduct.js" defer></script>
+    <script src="validate_input.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -65,7 +68,6 @@
                         <input class="inputNhap" type="text" name="masanpham" id="masanpham"
                             placeholder="Nhập mã sản phẩm" />
                         <button type="submit" id="chitietsanpham" class="btn-modal">Chỉnh sửa</button>
-                        <button type="submit" id="xoasanpham" class="btn-modal">Xoá</button>
                     </form>
                     <br>
                     <br>
@@ -139,7 +141,32 @@
                             </tr>
                         </tbody>
                     </table>
-                    
+                    <!-- Modal -->
+                    <div id="model-chitietsanpham" class="modal">
+                        <div class="modal-content">
+                            <form action="#" name="fix-product"> 
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Chỉnh sửa sản phẩm</h2>
+                                    <span class="close">&times;</span>
+                                </div>
+
+                                <div class="modal-body inputModal">
+                                    <label for="tensanpham">Tên sản phẩm:</label>
+                                    <br>
+                                    <input type="text" name="tensanpham" id="tensanpham" placeholder="Nhập sản phẩm" />
+                                    <br>
+                                    <label for="giasanpham">Giá:</label>
+                                    <br>
+                                    <input type="text" name="giasanpham" id="giasanpham" placeholder="Nhập giá" />
+                                    <br>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" id="luuSP" class="btn btn-primary order">Lưu thay đổi</button>
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

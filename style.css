@@ -432,5 +432,56 @@ form .error {
     background-color: #7a7878;
 }
 
+/* button chung */
+.btn-modal {
+    font-size: 15px;
+    color: #fff;
+    background: #2a65c4;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
 
+.btn-modal:hover {
+    background-color: #7a7878;
+}
+
+/* label chung */
+.inputNhap {
+    height: 30px;
+    border-radius: 5px;
+}
+
+.labelNhap {
+    font-size: 20px;
+}
+
+/* input chung */
+.inputModal {
+    font-size: 17px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.inputModal input {
+    width: 100%;
+    border-radius: 5px;
+}
+
+
+/* modal phieu nhap */
+.modal-content-phieunhap {
+    margin-top: 30px;
+    border: solid 1px rgb(174, 172, 172);
+}
+
+
+/* modal input */
+.modal-input {
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 50px;
+    font-size: 17px;
+}
 
