@@ -12,6 +12,9 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="login.js" defer></script>
+    <script src="register.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -46,23 +49,23 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="center-right-dangky">
-                        <form class="dangky" action="DangNhap.html">
+                        <form class="dangky" name="dangky" action="#">
                             <h1>Đăng ký</h1>
                             <br> <br>
-                            <label for="inputEmail4" class="form-label">Tên đăng nhập:</label>
-                            <input type="email" class="form-control" id="inputEmail4"
+                            <label for="tendangnhap" class="form-label">Tên đăng nhập:</label>
+                            <input type="text" class="form-control" id="tendangnhap" name="tendangnhap"
                                 placeholder="Nhập tên đăng nhập ở đây">
                             <br>
-                            <label for="inputPassword4" class="form-label">Mật khẩu:</label>
-                            <input type="password" class="form-control" id="inputPassword4"
+                            <label for="matkhau" class="form-label">Mật khẩu:</label>
+                            <input type="password" class="form-control" id="matkhau" name="matkhau"
                                 placeholder="Nhập mật khẩu ở đây">
                             <br>
-                            <label for="inputPassword4" class="form-label">Xác nhận mật khẩu:</label>
-                            <input type="password" class="form-control" id="inputPassword4"
+                            <label for="xacnhanmatkhau" class="form-label">Xác nhận mật khẩu:</label>
+                            <input type="password" class="form-control" id="xacnhanmatkhau" name="xacnhanmatkhau"
                                 placeholder="Nhập xác nhận mật khẩu ở đây">
                             <br>
                             <br>
-                            <button type="submit" class="btn btn-primary">Đăng ký</button>
+                            <button type="submit" id="dangky" class="btn btn-primary">Đăng ký</button>
                         </form>
                     </div>
                 </div>

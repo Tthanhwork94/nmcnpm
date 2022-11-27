@@ -12,6 +12,8 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+  <script src="login.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -46,16 +48,17 @@
         </div>
         <div class="col-sm-6">
           <div class="center-right-dangnhap">
-            <form class="dangnhap" action="KhachHang_Home.html">
+            <form class="dangnhap" name="dangky" action="#">
               <h1>Đăng nhập</h1>
               <br> <br>
-              <label for="inputEmail4" class="form-label">Tên đăng nhập:</label>
-              <input type="email" class="form-control" id="inputEmail4" placeholder="Nhập tên đăng nhập ở đây">
+              <label for="tendangnhap" class="form-label">Tên đăng nhập:</label>
+              <input type="text" class="form-control" id="tendangnhap" name="tendangnhap"
+                placeholder="Nhập tên đăng nhập ở đây">
               <br>
-              <label for="inputPassword4" class="form-label">Mật khẩu</label>
-              <input type="password" class="form-control" id="inputPassword4" placeholder="Nhập mật khẩu ở đây">
+              <label for="matkhau" class="form-label">Mật khẩu:</label>
+              <input type="password" class="form-control" id="matkhau" name="matkhau" placeholder="Nhập mật khẩu ở đây">
               <br>
-              <button type="submit" class="btn btn-primary">Đăng nhập</button>
+              <button type="submit" id="dangnhap" class="btn btn-primary">Đăng nhập</button>
             </form>
           </div>
         </div>
