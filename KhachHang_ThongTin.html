@@ -12,6 +12,10 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="fix-inf.js" defer></script>
+    <script src="fix-password.js" defer></script>
+    <script src="validate_input.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -65,8 +69,77 @@
                             <td>nguyenvanb@gmail.com</td>
                         </tr>
                     </table>
+                    <!-- Modal -->
+                    <!-- Button trigger modal -->
                     <button id="fix-inf" class="btn-modal">Chỉnh sửa</button>
 
+                    <!-- Modal -->
+                    <div id="Model-fix-inf" class="modal">
+                        <div class="modal-content">
+                            <form class="inputModal" action="#" name="add-product">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Thông tin cá nhân</h2>
+                                    <span class="close">&times;</span>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="hoten">Họ tên:</label>
+                                    <br>
+                                    <input type="text" name="hoten" id="hoten"
+                                        placeholder="Nhập họ tên" />
+                                    <br>
+                                    <label for="diachi">Địa chỉ:</label>
+                                    <br>
+                                    <input type="text" name="diachi" id="diachi"
+                                        placeholder="Nhập địa chỉ" />
+                                    <br>
+                                    <label for="email">Email:</label>
+                                    <br>
+                                    <input type="email" name="email" id="email"
+                                        placeholder="Nhập email" />
+                                    <br>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
+                                        đổi</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Đổi mật khẩu -->
+                    <button id="fix-password" class="btn-modal">Đổi mật khẩu</button>
+                    <!-- Modal -->
+                    <div id="Model-fix-password" class="modal">
+                        <div class="modal-content">
+                            <form class="inputModal" name="fix-pass" action="#">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Đổi mật khẩu</h2>
+                                    <span class="close2">&times;</span>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="matkhau">Mật khẩu hiện tại:</label>
+                                    <br>
+                                    <input type="text" name="matkhau" id="matkhau"
+                                        placeholder="Nhập mật khẩu hiện tại" />
+                                    <br>
+                                    <label for="matkhaumoi">Mật khẩu mới:</label>
+                                    <br>
+                                    <input type="password" name="matkhaumoi" id="matkhaumoi"
+                                        placeholder="Nhập mật khẩu" />
+                                    <br>
+                                    <label for="xacnhanmatkhaumoi">Xác nhận mật khẩu:</label>
+                                    <br>
+                                    <input type="password" name="xacnhanmatkhaumoi" id="xacnhanmatkhaumoi"
+                                        placeholder="Nhập lại mật khẩu" />
+                                    <br>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary close-footer2">Đóng</button>
+                                    <button type="submit" class="btn btn-primary order2">Lưu thay đổi</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     
                 </div>
             </div>

@@ -13,6 +13,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="index.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -44,7 +45,41 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        
+        <!-- modal gio hang -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <form action="#" name="validateInput">
+                <div class="modal-header">
+                    <h2 class="modal-title">Giỏ Hàng</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="cart-row">
+                        <span class="cart-item cart-header cart-column">Sản Phẩm</span>
+                        <span class="cart-price cart-header cart-column">Giá</span>
+                        <span class="cart-quantity cart-header cart-column">Số Lượng</span>
+                    </div>
+                    <div class="cart-items">
+
+                    </div>
+                    <div class="cart-total">
+                        <strong class="cart-total-title">Tổng Cộng:</strong>
+                        <span class="cart-total-price">0VNĐ</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    
+                        <div class="cart-time">
+                            <label for="thoigiannhan">Thời gian nhận:</label>
+                            <input type="datetime-local" name="thoigiannhan" id="thoigiannhan" placeholder="Nhập thời gian nhận" />
+                        </div>
+                        <hr>
+                        <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                        <button type="submit" id="thanhtoan" class="btn btn-primary order">Thanh Toán</button>
+                </div>
+            </form>
+            </div>
+        </div>
     </nav>
 
 

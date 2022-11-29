@@ -12,6 +12,9 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="OrderManage.js" defer></script>
+    <script src="validate_input.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -131,8 +134,56 @@
                             </tr>
                         </tbody>
                     </table>
-                    
 
+                    <!-- modal gio hang -->
+                    <div id="exampleModal" class="modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title">Xem chi tiết đơn hàng</h2>
+                                <span class="close">&times;</span>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã đơn hàng</th>
+                                            <th>Mã món</th>
+                                            <th>Tên món</th>
+                                            <th>Số lượng</th>
+                                            <th>Đơn giá</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>Cơm</td>
+                                            <td>1</td>
+                                            <td>5000đ</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>2</td>
+                                            <td>Rau</td>
+                                            <td>2</td>
+                                            <td>10000đ</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>3</td>
+                                            <td>Thịt gà</td>
+                                            <td>1</td>
+                                            <td>5000đ</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
