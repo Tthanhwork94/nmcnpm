@@ -37,7 +37,7 @@ function renderPagination(max){
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
                               <li class="page-item"><a class="page-link" href="#">Previous</a></li>`
-    for(let i = 1 ; i<= max;i++){
+    for(let i = 1 ; i<= max,i++){
         element1+=`<li class="page-item"><a class="page-link" href="#">${i}</a></li>`
     }                           
     let element3=`<li class="page-item"><a class="page-link" href="#">Next</a></li>

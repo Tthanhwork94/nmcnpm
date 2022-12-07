@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Employee Order System HCMUS</title>
+    <title>Order System HCMUS</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
@@ -12,9 +12,6 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <!-- <script src="listProduct.js" defer></script>
-    <script src="validate_input.js" defer></script> -->
 
     <script src="/function.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -37,25 +34,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="NhanVien_Home.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
+                <a class="navbar-brand" href="KhachHang_Home.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="NhanVien_Home.html">Trang chủ</a></li>
-                    <li><a href="NhanVien_QuanLyDonHang.html">Quản lý đơn hàng</a></li>
+                    <li><a href="KhachHang_Home.html">Trang chủ</a></li>
+                    <li><a href="KhachHang_DatMon.html">Đặt món</a></li>
+                    <li><a href="KhachHang_DonHangCuaToi.html">Đơn hàng của tôi</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sản phẩm<b class="caret"></b></a>
+                        <a href="#" id="account" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="NhanVien_ThemSanPham.html">Thêm sản phẩm</a></li>
-                            <li><a href="NhanVien_DanhMucSanPham.html">Danh mục sản phẩm</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="NhanVien_NhapKho.html">Nhập kho</a></li>
-                    <li><a href="NhanVien_ThongKe.html">Thống kê</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="NhanVien_ThongTin.html">Thông tin</a></li>
+                            <li><a href="KhachHang_ThongTin.html">Thông tin</a></li>
                             <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
                                     xuất</a></li>
                         </ul>
@@ -67,67 +56,33 @@
     </nav>
 
     <!-- Center-->
-    <div class="center-content" class="container-fluid">
+    <div class="center" class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <h2>Danh sách sản phẩm</h2>
-                    <br>
-                    <form action="#" name="add-product">
-                        <label class="labelNhap" for="masanpham" id="lbmasanpham">Mã sản phẩm:</label>
-                        <input class="inputNhap" type="text" name="masanpham" id="masanpham"
-                            placeholder="Nhập mã sản phẩm" />
-                        <button type="submit" id="chitietsanpham" class="btn-modal">Chỉnh sửa</button>
-                    </form>
-                    <br>
-                    <br>
-                    <hr>
-                    <table class='table'>
-                        <thead>
-                            <tr>
-                                <th scope="col">Mã sản phẩm</th>
-                                <th scope="col">Tên sản phẩm</th>
-                                <th scope="col">Số lượng tồn</th>
-                                <th scope="col">Giá</th>
-                                <th scope="col">Nhà cung ứng</th>
-                            </tr>
-                        </thead>
-                            <tr class="content-order">
-                                <td>1</td>
-                                <td>Cơm</td>
-                                <td>100</td>
-                                <td>10000đ</td>
-                                <td>1</td>
-                            </tr>
-                    </table>
-                    <div id="pagination">
-                        
-                    </div>
-                    <!-- Modal -->
-                    <div id="model-chitietsanpham" class="modal">
-                        <div class="modal-content">
-                            <form action="#" name="fix-product"> 
-                                <div class="modal-header">
-                                    <h2 class="modal-title">Chỉnh sửa sản phẩm</h2>
-                                    <span class="close">&times;</span>
-                                </div>
-
-                                <div class="modal-body inputModal">
-                                    <label for="tensanpham">Tên sản phẩm:</label>
-                                    <br>
-                                    <input type="text" name="tensanpham" id="tensanpham" placeholder="Nhập sản phẩm" />
-                                    <br>
-                                    <label for="giasanpham">Giá:</label>
-                                    <br>
-                                    <input type="text" name="giasanpham" id="giasanpham" placeholder="Nhập giá" />
-                                    <br>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" id="luuSP" class="btn btn-primary order">Lưu thay đổi</button>
-                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
-                                </div>
-                            </form>
+                <div class="col-sm-6">
+                    <div class="banner-content-top">
+                        <div class="center-left">
+                            <div class="content-text">
+                                <h1>Fast</h1>
+                            </div>
+                            <div class="content-text">
+                                <h2>Food<br>Order</h2>
+                            </div>
                         </div>
+                    </div>
+                    <div class="banner-content-bottom">
+                        <p>
+                            Chào mừng bạn đến với căn tin trường Đại học <br>
+                            Khoa học Tự nhiên - ĐHQG HCM <br>
+                        </p>
+                        <a href="KhachHang_DatMon.html">
+                            Đặt món ngay
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="center-right">
+                        <img class="img-thumbnail" src="images/17372 [Converted] 1.png" alt="">
                     </div>
                 </div>
             </div>
@@ -182,6 +137,9 @@
             </div>
         </div>
     </div>
+    <script>
+        init();
+    </script>
 </body>
 
 </html>

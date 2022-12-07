@@ -138,7 +138,8 @@
           showToast("đăng nhập thành công",'success');
           setTimeout(function(){
             setLocalAccount(tentaikhoan.value);
-            window.location.href = "/"+res.data.loaitaikhoan+"_home.html";
+            let loaitaikhoan=JSON.parse(localStorage.getItem("account")).loaitaikhoan;
+            window.location.href = "/"+account.loaitaikhoan+"_home.html";
           },2000);
         })
         .catch(function(error){

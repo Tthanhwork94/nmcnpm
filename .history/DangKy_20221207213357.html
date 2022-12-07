@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Employee Order System HCMUS</title>
+    <title>Order System HCMUS</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
@@ -13,8 +13,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <!-- <script src="listProduct.js" defer></script>
-    <script src="validate_input.js" defer></script> -->
+    <!-- <script src="login.js" defer></script> -->
+    <!-- <script src="register.js" defer></script> -->
 
     <script src="/function.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-8D+M+7Y6jVsEa7RD6Kv/Z7EImSpNpQllgaEIQAtqHcI0H6F4iZknRj0Nx1DCdB+TwBaS+702BGWYC0Ze2hpExQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.js" integrity="sha512-Y+cHVeYzi7pamIOGBwYHrynWWTKImI9G78i53+azDb1uPmU1Dz9/r2BLxGXWgOC7FhwAGsy3/9YpNYaoBy7Kzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -37,97 +38,46 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="NhanVien_Home.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
+                <a class="navbar-brand" href="index.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="NhanVien_Home.html">Trang chủ</a></li>
-                    <li><a href="NhanVien_QuanLyDonHang.html">Quản lý đơn hàng</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sản phẩm<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="NhanVien_ThemSanPham.html">Thêm sản phẩm</a></li>
-                            <li><a href="NhanVien_DanhMucSanPham.html">Danh mục sản phẩm</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="NhanVien_NhapKho.html">Nhập kho</a></li>
-                    <li><a href="NhanVien_ThongKe.html">Thống kê</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="NhanVien_ThongTin.html">Thông tin</a></li>
-                            <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
-                                    xuất</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="DangNhap.html"><span class="glyphicon glyphicon-user logo"> </span> Đăng nhập</a></li>
+                    <li><a href="DangKy.html"><span class="glyphicon glyphicon-lock logo"> </span> Đăng ký</a></li>
                 </ul>
             </div>
             <div class="clearfix"></div>
         </div>
     </nav>
-
     <!-- Center-->
-    <div class="center-content" class="container-fluid">
+    <div class="center" class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <h2>Danh sách sản phẩm</h2>
-                    <br>
-                    <form action="#" name="add-product">
-                        <label class="labelNhap" for="masanpham" id="lbmasanpham">Mã sản phẩm:</label>
-                        <input class="inputNhap" type="text" name="masanpham" id="masanpham"
-                            placeholder="Nhập mã sản phẩm" />
-                        <button type="submit" id="chitietsanpham" class="btn-modal">Chỉnh sửa</button>
-                    </form>
-                    <br>
-                    <br>
-                    <hr>
-                    <table class='table'>
-                        <thead>
-                            <tr>
-                                <th scope="col">Mã sản phẩm</th>
-                                <th scope="col">Tên sản phẩm</th>
-                                <th scope="col">Số lượng tồn</th>
-                                <th scope="col">Giá</th>
-                                <th scope="col">Nhà cung ứng</th>
-                            </tr>
-                        </thead>
-                            <tr class="content-order">
-                                <td>1</td>
-                                <td>Cơm</td>
-                                <td>100</td>
-                                <td>10000đ</td>
-                                <td>1</td>
-                            </tr>
-                    </table>
-                    <div id="pagination">
-                        
+                <div class="col-sm-6">
+                    <div class="center-left-dangnhap">
+                        <img class="img-thumbnail" src="images/17372 [Converted] 1.png" alt="">
                     </div>
-                    <!-- Modal -->
-                    <div id="model-chitietsanpham" class="modal">
-                        <div class="modal-content">
-                            <form action="#" name="fix-product"> 
-                                <div class="modal-header">
-                                    <h2 class="modal-title">Chỉnh sửa sản phẩm</h2>
-                                    <span class="close">&times;</span>
-                                </div>
-
-                                <div class="modal-body inputModal">
-                                    <label for="tensanpham">Tên sản phẩm:</label>
-                                    <br>
-                                    <input type="text" name="tensanpham" id="tensanpham" placeholder="Nhập sản phẩm" />
-                                    <br>
-                                    <label for="giasanpham">Giá:</label>
-                                    <br>
-                                    <input type="text" name="giasanpham" id="giasanpham" placeholder="Nhập giá" />
-                                    <br>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" id="luuSP" class="btn btn-primary order">Lưu thay đổi</button>
-                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
-                                </div>
-                            </form>
-                        </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="center-right-dangky">
+                        <form class="dangky" name="dangky" action="#">
+                            <h1>Đăng ký</h1>
+                            <br> <br>
+                            <label for="tendangnhap" class="form-label">Tên đăng nhập:</label>
+                            <input type="text" class="form-control" id="tendangnhap" name="tendangnhap"
+                                placeholder="Nhập tên đăng nhập ở đây">
+                            <br>
+                            <label for="matkhau" class="form-label">Mật khẩu:</label>
+                            <input type="password" class="form-control" id="matkhau" name="matkhau"
+                                placeholder="Nhập mật khẩu ở đây">
+                            <br>
+                            <label for="xacnhanmatkhau" class="form-label">Xác nhận mật khẩu:</label>
+                            <input type="password" class="form-control" id="xacnhanmatkhau" name="xacnhanmatkhau"
+                                placeholder="Nhập xác nhận mật khẩu ở đây">
+                            <br>
+                            <br>
+                            <a onclick="register()" type="text" id="dangky" class="btn btn-primary">Đăng ký</a>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -182,6 +132,33 @@
             </div>
         </div>
     </div>
+    <script>
+        function register(){
+            let taikhoan=document.getElementById("tendangnhap");
+            let matkhau=document.getElementById("matkhau");
+            let xacnhanmatkhau=document.getElementById("xacnhanmatkhau");
+            let loaitaikhoan="khachhang";
+            if(matkhau.toLowerCase()===xacnhanmatkhau.toLowerCase()){
+                showToast("mật khẩu xác nhận không trùng khớp!",'info');
+                matkhau.value='';
+                xacnhanmatkhau.value='';
+            }else{
+                let taikhoan={
+                    tentaikhoan:taikhoan,
+                    matkhau:matkhau,
+                    loaitaikhoan:loaitaikhoan
+                }
+                axios.post("http://localhost:8080/api/register",taikhoan)
+                .then(function(res){
+                    showToast("Đăng ký thành công!",'success');
+                })
+                .catch(function(error){
+                    showToast("đăng ký thất bại!",'error');
+                })
+                
+            }
+        }
+    </script>
 </body>
 
 </html>

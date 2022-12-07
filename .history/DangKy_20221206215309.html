@@ -12,16 +12,9 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
-
-    <script src="/function.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
-    <script src="https://momentjs.com/downloads/moment.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js" integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-8D+M+7Y6jVsEa7RD6Kv/Z7EImSpNpQllgaEIQAtqHcI0H6F4iZknRj0Nx1DCdB+TwBaS+702BGWYC0Ze2hpExQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.js" integrity="sha512-Y+cHVeYzi7pamIOGBwYHrynWWTKImI9G78i53+azDb1uPmU1Dz9/r2BLxGXWgOC7FhwAGsy3/9YpNYaoBy7Kzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="login.js" defer></script>
+    <script src="register.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -34,55 +27,46 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="KhachHang_Home.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
+                <a class="navbar-brand" href="index.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="KhachHang_Home.html">Trang chủ</a></li>
-                    <li><a href="KhachHang_DatMon.html">Đặt món</a></li>
-                    <li><a href="KhachHang_DonHangCuaToi.html">Đơn hàng của tôi</a></li>
-                    <li class="dropdown">
-                        <a href="#" id="account" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="KhachHang_ThongTin.html">Thông tin</a></li>
-                            <li><a onclick="logout()" href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
-                                    xuất</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="DangNhap.html"><span class="glyphicon glyphicon-user logo"> </span> Đăng nhập</a></li>
+                    <li><a href="DangKy.html"><span class="glyphicon glyphicon-lock logo"> </span> Đăng ký</a></li>
                 </ul>
             </div>
             <div class="clearfix"></div>
         </div>
     </nav>
-
     <!-- Center-->
     <div class="center" class="container-fluid">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="banner-content-top">
-                        <div class="center-left">
-                            <div class="content-text">
-                                <h1>Fast</h1>
-                            </div>
-                            <div class="content-text">
-                                <h2>Food<br>Order</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="banner-content-bottom">
-                        <p>
-                            Chào mừng bạn đến với căn tin trường Đại học <br>
-                            Khoa học Tự nhiên - ĐHQG HCM <br>
-                        </p>
-                        <a href="KhachHang_DatMon.html">
-                            Đặt món ngay
-                        </a>
+                    <div class="center-left-dangnhap">
+                        <img class="img-thumbnail" src="images/17372 [Converted] 1.png" alt="">
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="center-right">
-                        <img class="img-thumbnail" src="images/17372 [Converted] 1.png" alt="">
+                    <div class="center-right-dangky">
+                        <form class="dangky" name="dangky" action="#">
+                            <h1>Đăng ký</h1>
+                            <br> <br>
+                            <label for="tendangnhap" class="form-label">Tên đăng nhập:</label>
+                            <input type="text" class="form-control" id="tendangnhap" name="tendangnhap"
+                                placeholder="Nhập tên đăng nhập ở đây">
+                            <br>
+                            <label for="matkhau" class="form-label">Mật khẩu:</label>
+                            <input type="password" class="form-control" id="matkhau" name="matkhau"
+                                placeholder="Nhập mật khẩu ở đây">
+                            <br>
+                            <label for="xacnhanmatkhau" class="form-label">Xác nhận mật khẩu:</label>
+                            <input type="password" class="form-control" id="xacnhanmatkhau" name="xacnhanmatkhau"
+                                placeholder="Nhập xác nhận mật khẩu ở đây">
+                            <br>
+                            <br>
+                            <button type="submit" id="dangky" class="btn btn-primary">Đăng ký</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -137,9 +121,6 @@
             </div>
         </div>
     </div>
-    <script>
-        init();
-    </script>
 </body>
 
 </html>

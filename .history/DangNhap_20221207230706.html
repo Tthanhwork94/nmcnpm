@@ -68,7 +68,7 @@
               <label for="matkhau" class="form-label">Mật khẩu:</label>
               <input type="password" class="form-control" id="matkhau" name="matkhau" placeholder="Nhập mật khẩu ở đây">
               <br>
-              <a onclick="dangnhap()" id="dangnhap" class="btn btn-primary">Đăng nhập</a>
+              <button type="submit" id="dangnhap" class="btn btn-primary">Đăng nhập</button>
             </form>
           </div>
         </div>
@@ -132,25 +132,24 @@
           tentaikhoan:tentaikhoan.value,
           matkhau:matkhau.value
         };
-        console.log(taikhoan)
         axios.post("http://localhost:8080/api/login",taikhoan)
         .then(function(res){
           showToast("đăng nhập thành công",'success');
           setTimeout(function(){
-            setLocalAccount(tentaikhoan.value);
-            window.location.href = "/"+res.data.loaitaikhoan+"_home.html";
+            setLocalAccount(tentaikhoan);
+            let loaitaikhoan=JSON.parse(localStorage.getItem("account")).loaitaikhoan;
+            window.location.href = "/"+account.loaitaikhoan+"_home.html";
           },2000);
         })
         .catch(function(error){
           switch (error.response.status) {
             case 404:
-              showToast("sai tài khoản!",'error');
+              showToast("tài khoản chưa tồn tại!",'error');
               break;
-            case 401:
-              showToast("sai mật khẩu!",'error');
+            case 404:
+              showToast("tài khoản chưa tồn tại!",'error');
               break;
             default:
-              showToast("xảy ra lỗi!",'error');
               break;
           }
         })
