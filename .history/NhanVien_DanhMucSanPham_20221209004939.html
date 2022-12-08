@@ -286,7 +286,7 @@
             console.log(sanpham);
             axios.put("http://localhost:8080/api/sanpham",sanpham)
             .then(function(res){      
-                if(res.data == 1){
+                if(response.data == 1){
                     showToast("chỉnh sữa sản phẩm thành công!","success");
                     setTimeout(closeModel(),1500);
                 }else{

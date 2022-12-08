@@ -74,8 +74,23 @@
             <div class="row">
                 <div class="col-sm-7">
                     <h2 class="thucdon">Danh mục sản phẩm</h2>
-                    <table id="table" class='table'>
-                        
+                    <table class='table'>
+                        <thead>
+                            <tr>
+                                <th scope="col">Mã sản phẩm</th>
+                                <th scope="col">Tên sản phẩm</th>
+                                <th scope="col">Giá</th>
+                                <th scope="col">Mã nhà cung ứng</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tr class="content-product">
+                            <td>1</td>
+                            <td class="content-product-h3">Cơm</td>
+                            <td class="price"><span class="money">25000đ</span></td>
+                            <td class="idNCU">1</td>
+                            <td><button type="button" class="btn btn-cart">Thêm Vào Phiếu</button></td>
+                        </tr>
                             
                     </table>
                 </div>
@@ -89,7 +104,11 @@
                             <div class="cart-maNCU">
                                 <label for="maNCU">Chọn nhà cung ứng:</label>
                                 <select name="" id="maNCU" class="form-control" required="required">
-
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
                                 </select>                        
                             </div>
                             <div class="cart-time">
@@ -172,104 +191,6 @@
     </div>
     <script>
         init();
-        getSanPham();
-        function getSanPham(){
-            axios.get("http://localhost:8080/api/sanpham")
-            .then((result) => {
-                renderSanPham(result.data);
-            }).catch((err) => {
-                showToast("xảy ra lỗi!",'error')
-            });
-            renderNCU();
-        }
-
-        function renderSanPham(data){
-            let element=`
-                        <thead>
-                            <tr>
-                                <th scope="col">Mã sản phẩm</th>
-                                <th scope="col">Tên sản phẩm</th>
-                                <th scope="col">Giá</th>
-                                <th scope="col">Mã nhà cung ứng</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-            `
-            data.map(value=>{
-                element+=`
-                        <tr class="content-product">
-                            <td>${value.masanpham}</td>
-                            <td class="content-product-h3">${value.tensanpham}</td>
-                            <td class="price"><span class="money">${value.gia} đ</span></td>
-                            <td class="idNCU">${value.nhacungung == null?"trống":value.nhacungung.tenNhaCungUng}</td>
-                            <td><button onclick="addtoCart(${value.masanpham})" type="button" class="btn btn-cart">Thêm Vào Phiếu</button></td>
-                        </tr>
-                `
-            })
-            document.getElementById("table").innerHTML=element;
-        }
-
-        async function renderNCU(){
-            let response = await axios.get("http://localhost:8080/api/nhacungung");
-            let element=``;
-            response.data.map(value => {
-                element+=`<option value="${value.maNhaCungUng}">${value.tenNhaCungUng}</option>`
-            })
-            document.getElementById("maNCU").innerHTML=element;
-        }
-
-        function checkexist(list,masanpham){
-            let check = false
-            list.map(function(item){
-                if(item.masanpham===masanpham){
-                    check = true;
-                }
-                });
-            return check;
-        }
-
-        function addtoCart(masanpham){
-            let cart =JSON.parse(localStorage.getItem("cart"))
-            let list=cart.list;
-            if (checkexist(list,masanpham)){
-                list.map(function(item){
-                    if(item.masanpham===masanpham){
-                        item['soluong']+=1;
-                        showToast("thêm vào giỏ hàng!",'info');
-                    }
-                });
-            }else{
-                sanpham={
-                    masanpham:masanpham,
-                    soluong:1,
-                }
-                list.push(sanpham);
-                showToast("thêm vào giỏ hàng!",'info');
-            }
-            cart.list=list;
-            let tongtien=0;
-            list.map(function(item){
-                tongtien+=item.gia*item.soluong;
-            })
-            cart.tongtien=tongtien;
-            localStorage.setItem("cart",JSON.stringify(cart));
-            console.log(cart);
-        }
-
-        function renderPhieuNhap(){ 
-            let element=`<div class="cart-row cart-items">
-                        <span class="cart-item  cart-column">${value.tenmon}</span>
-                        <span class="cart-price cart-column">${value.gia}</span>
-                        <span class="cart-quantity cart-column">${value.soluong}</span>
-                        <span class="cart-quantity cart-column">${value.soluong*value.gia}</span>
-                        <span class="cart-quantity cart-column">
-                            <button onclick="removeItemCart(${value.mamon})" class="btn btn-danger" type="button">Xóa</button>
-                        </span>
-                    </div>`
-        }
-
-        var modal = document.getElementById("myModal");
-        var btn = document.getElementById("cart");
     </script>
 </body>
 

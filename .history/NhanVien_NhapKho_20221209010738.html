@@ -13,7 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <!-- <script src="listProduct.js" defer></script>
+    <!-- <script src="nhapkho.js" defer></script>
     <script src="validate_input.js" defer></script> -->
 
     <script src="/function.js"></script>
@@ -25,7 +25,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-8D+M+7Y6jVsEa7RD6Kv/Z7EImSpNpQllgaEIQAtqHcI0H6F4iZknRj0Nx1DCdB+TwBaS+702BGWYC0Ze2hpExQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.js" integrity="sha512-Y+cHVeYzi7pamIOGBwYHrynWWTKImI9G78i53+azDb1uPmU1Dz9/r2BLxGXWgOC7FhwAGsy3/9YpNYaoBy7Kzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 
 </head>
 
@@ -66,74 +65,76 @@
             </div>
             <div class="clearfix"></div>
         </div>
+
     </nav>
 
     <!-- Center-->
     <div class="center-content" class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <h2>Danh sách sản phẩm</h2>
-                    <br>
-                    <!-- <form action="#" name="add-product">
-                        <label class="labelNhap" for="masanpham" id="lbmasanpham">Mã sản phẩm:</label>
-                        <input class="inputNhap" type="text" name="masanpham" id="masanpham"
-                            placeholder="Nhập mã sản phẩm" />
-                        <button type="submit" id="chitietsanpham" class="btn-modal">Chỉnh sửa</button>
-                    </form> -->
-                    <br>
-                    <br>
-                    <hr>
+                <div class="col-sm-7">
+                    <h2 class="thucdon">Danh mục sản phẩm</h2>
                     <table id="table" class='table'>
                         <thead>
                             <tr>
                                 <th scope="col">Mã sản phẩm</th>
                                 <th scope="col">Tên sản phẩm</th>
-                                <th scope="col">Số lượng tồn</th>
                                 <th scope="col">Giá</th>
-                                <th scope="col">Nhà cung ứng</th>
+                                <th scope="col">Mã nhà cung ứng</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
-                            <tr class="content-order">
-                                <td>1</td>
-                                <td>Cơm</td>
-                                <td>100</td>
-                                <td>10000đ</td>
-                                <td>1</td>
-                            </tr>
+                        <tr class="content-product">
+                            <td>1</td>
+                            <td class="content-product-h3">Cơm</td>
+                            <td class="price"><span class="money">25000đ</span></td>
+                            <td class="idNCU">1</td>
+                            <td><button type="button" class="btn btn-cart">Thêm Vào Phiếu</button></td>
+                        </tr>
+                            
                     </table>
-                    <div id="pagination">
-                        
-                    </div>
-                    <!-- Modal -->
-                    <div id="model-chitietsanpham" class="modal">
-                        <div class="modal-content">
-                            <form action="#" name="fix-product"> 
-                                <div class="modal-header">
-                                    <h2 class="modal-title">Chỉnh sửa sản phẩm</h2>
-                                    <span class="close">&times;</span>
-                                </div>
-
-                                <div class="modal-body inputModal">
-                                    <label for="masanpham">masanpham:</label>
-                                    <br>
-                                    <input type="text" name="masanpham" id="masanpham" placeholder="mã sản phẩm" disabled/>
-                                    <br>
-                                    <label for="tensanpham">Tên sản phẩm:</label>
-                                    <br>
-                                    <input type="text" name="tensanpham" id="tensanpham" placeholder="Nhập sản phẩm" />
-                                    <br>
-                                    <label for="giasanpham">Giá:</label>
-                                    <br>
-                                    <input type="text" name="giasanpham" id="giasanpham" placeholder="Nhập giá" />
-                                    <br>
-                                </div>
-                                <div class="modal-footer">
-                                    <button onclick="updateSanPham()" type="button" id="luuSP" class="btn btn-primary order">Lưu thay đổi</button>
-                                    <button onclick="closeModel()" type="button" class="btn btn-secondary close-footer">Đóng</button>
-                                </div>
-                            </form>
+                </div>
+                <div class="col-sm-5">
+                    <div class="modal-content-phieunhap">
+                        <form action="#" name="add-product">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Phiếu nhập</h2>
                         </div>
+                        <div class="modal-input">
+                            <div class="cart-maNCU">
+                                <label for="maNCU">Chọn nhà cung ứng:</label>
+                                <select name="" id="maNCU" class="form-control" required="required">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>                        
+                            </div>
+                            <div class="cart-time">
+                                <label for="ngaynhap">Ngày nhập:</label>
+                                <br>
+                                <input type="date" name="ngaynhap" id="ngaynhap" placeholder="Nhập thời gian nhận" />
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="cart-row">
+                                <span class="cart-item cart-header cart-column">Sản Phẩm</span>
+                                <span class="cart-price cart-header cart-column">Giá</span>
+                                <span class="cart-quantity cart-header cart-column">Số Lượng</span>
+                            </div>
+                            <div class="cart-items">
+                                
+                            </div>
+                            <div class="cart-total">
+                                <strong class="cart-total-title">Tổng Cộng:</strong>
+                                <span class="cart-total-price">0VNĐ</span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary order" id="nhaphang">Xác nhận</button>
+                        </div>
+                    </form>
                     </div>
                 </div>
             </div>
@@ -190,27 +191,15 @@
     </div>
     <script>
         init();
-        getSanPham(indexPage=1)
-        var totalPage;
-
-        function getTotalPage(){
-            axios.get("http://localhost:8080/api/sanpham/totalpage")
-            .then(function(res){
-                localStorage.setItem("totalPage",res.data);
-                localStorage.setItem("indexPage",1);
-            })
+        getSanPham();
+        function getSanPham(){
+            axios.get("http://localhost:8080/api/sanpham")
+            .then((result) => {
+                renderSanPham(result.data);
+            }).catch((err) => {
+                showToast("xảy ra lỗi!",'error')
+            });
         }
-        getTotalPage(indexPage);
-       
-        function getSanPham(index=1){
-
-            axios.get("http://localhost:8080/api/sanpham?page="+index)
-            .then(function(res){
-                renderSanPham(res.data);
-            })
-        }
-        
-        totalPage=localStorage.getItem("totalPage");
 
         function renderSanPham(data){
             let element=`
@@ -218,89 +207,35 @@
                             <tr>
                                 <th scope="col">Mã sản phẩm</th>
                                 <th scope="col">Tên sản phẩm</th>
-                                <th scope="col">Số lượng tồn</th>
                                 <th scope="col">Giá</th>
-                                <th scope="col">Nhà cung ứng</th>
+                                <th scope="col">Mã nhà cung ứng</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
             `
-            data.map(value => {
+            data.map(value=>{
                 element+=`
-                            <tr class="content-order">
-                                <td>${value.masanpham}</td>
-                                <td>${value.tensanpham}</td>
-                                <td>${value.soluongton}</td>
-                                <td>${value.gia} đ</td>
-                                <td>${value.nhacungung != null ? value.nhacungung.tenNhaCungUng : "không có"}</td>
-                                <td><a style="cursor: pointer" onclick="showModel(${value.masanpham})">chỉnh sửa</a></td>
-                            </tr>
+                        <tr class="content-product">
+                            <td>${value.masanpham}</td>
+                            <td class="content-product-h3">${value.tensanpham}</td>
+                            <td class="price"><span class="money">${value.gia} đ</span></td>
+                            <td class="idNCU">${value.nhacungung == null?"trống":value.nhacungung.tenNhaCungUng}</td>
+                            <td><button type="button" class="btn btn-cart">Thêm Vào Phiếu</button></td>
+                        </tr>
                 `
             })
             document.getElementById("table").innerHTML=element;
         }
-        function renderPagination(indexPage,max){     
-            let pagination = document.getElementById("pagination");
-            let element1 =`
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#"><</a></li>`
-            for(let i = 1 ; i<= max;i++){
-                element1+=`<li class="page-item"><a onclick="getSanPham(${i});renderPagination(${i},${totalPage})" class="page-link">${i}</a></li>`
-            }                           
-            let element3=`<li class="page-item"><a class="page-link" href="#">></a></li>
-                            </ul>
-                        </nav>`
 
-            pagination.innerHTML=element1+element3;
-            const pages = document.querySelectorAll('.page-item');
-            for (const page of pages) {
-                page.classList.remove('active');
-            } 
-            pages.item(indexPage).classList.add("active");
-        }
 
-        renderPagination(1,totalPage);
-
-        async function showModel(ma){
-            let masanpham=document.getElementById("masanpham");
-            let tensanpham=document.getElementById("tensanpham");
-            let giasanpham=document.getElementById("giasanpham");
-            const response = await axios.get("http://localhost:8080/api/sanpham/"+ma)
-            const data=response.data;
-            masanpham.value=ma;
-            tensanpham.value=data.tensanpham;
-            giasanpham.value=data.gia;
-            document.getElementById("model-chitietsanpham").style.display="block";
-        }
-
-        async function updateSanPham(){
-            let masanpham=document.getElementById("masanpham");
-            let tensanpham=document.getElementById("tensanpham");
-            let giasanpham=document.getElementById("giasanpham");
-            let sanpham={
-                masanpham:masanpham.value,
-                tensanpham:tensanpham.value,
-                gia:giasanpham.value
-            }
-            console.log(sanpham);
-            axios.put("http://localhost:8080/api/sanpham",sanpham)
-            .then(function(res){      
-                if(res.data == 1){
-                    showToast("chỉnh sữa sản phẩm thành công!","success");
-                    setTimeout(closeModel(),1500);
-                }else{
-                    showToast("chỉnh sữa sản phẩm không thành công!","error");
-                    // setTimeout(closeModel(),1500);
+        function checkexist(list,masanpham){
+            let check = false
+            list.map(function(item){
+                if(item.masanpham===masanpham){
+                    check = true;
                 }
-            })
-            .catch(function(error){
-                showToast("chỉnh sữa sản phẩm không thành công!","error");
-            })
-        }
-
-        function closeModel(){
-            document.getElementById("model-chitietsanpham").style.display="none";
+            });
+        return check;
         }
     </script>
 </body>

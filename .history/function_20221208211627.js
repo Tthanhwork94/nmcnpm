@@ -8,7 +8,7 @@ function setLocalAccount(tentaikhoan){
 
 function init(){
     document.getElementById("account").innerHTML = JSON.parse(localStorage.getItem("account")).tentaikhoan;
-    let cart= '{"list":[],"tongtien":0,"soluong":0,"nhacungung":null,"ngaynhap":null}';
+    let cart= '{"listmon":[],"sdtkhachhang":"","diachigiaohang":"","tuychon":"","tongtien":0}';
     var object = JSON.parse(cart);
     window.localStorage.setItem("cart",JSON.stringify(object));
 };
@@ -31,7 +31,8 @@ function showToast(message,icon){
   })
 };
 
-function renderPagination(max){
+function renderPagination(){
+    let max=localStorage.getItem("totalPage");
     let pagination = document.getElementById("pagination");
     let element1 =`
                         <nav aria-label="Page navigation example">

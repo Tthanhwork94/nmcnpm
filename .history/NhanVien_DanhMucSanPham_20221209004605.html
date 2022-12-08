@@ -279,24 +279,18 @@
             let tensanpham=document.getElementById("tensanpham");
             let giasanpham=document.getElementById("giasanpham");
             let sanpham={
-                masanpham:masanpham.value,
-                tensanpham:tensanpham.value,
-                gia:giasanpham.value
+                masanpham:masanpham,
+                tensanpham:tensanpham,
+                gia:giasanpham
             }
-            console.log(sanpham);
-            axios.put("http://localhost:8080/api/sanpham",sanpham)
-            .then(function(res){      
-                if(res.data == 1){
-                    showToast("chỉnh sữa sản phẩm thành công!","success");
-                    setTimeout(closeModel(),1500);
-                }else{
-                    showToast("chỉnh sữa sản phẩm không thành công!","error");
-                    // setTimeout(closeModel(),1500);
-                }
-            })
-            .catch(function(error){
+            let response = await axios.put("http://localhost:8080/api/sanpham",sanpham);
+            if(response.data == 1){
+                showToast("chỉnh sữa sản phẩm thành công!","success");
+                setTimeout(closeModel(),1500);
+            }else{
                 showToast("chỉnh sữa sản phẩm không thành công!","error");
-            })
+                // setTimeout(closeModel(),1500);
+            }
         }
 
         function closeModel(){

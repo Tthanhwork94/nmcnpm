@@ -8,7 +8,7 @@ function setLocalAccount(tentaikhoan){
 
 function init(){
     document.getElementById("account").innerHTML = JSON.parse(localStorage.getItem("account")).tentaikhoan;
-    let cart= '{"list":[],"tongtien":0,"soluong":0,"nhacungung":null,"ngaynhap":null}';
+    let cart= '{"list":[],"tongtien":0,"soluong":0}';
     var object = JSON.parse(cart);
     window.localStorage.setItem("cart",JSON.stringify(object));
 };

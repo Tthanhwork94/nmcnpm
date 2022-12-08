@@ -26,6 +26,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.js" integrity="sha512-Y+cHVeYzi7pamIOGBwYHrynWWTKImI9G78i53+azDb1uPmU1Dz9/r2BLxGXWgOC7FhwAGsy3/9YpNYaoBy7Kzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <script type="text/javascript" src="path_to/jquery.js"></script>
+    <script type="text/javascript" src="path_to/jquery.simplePagination.js"></script>
+    <link type="text/css" rel="stylesheet" href="path_to/simplePagination.css"/>
 
 </head>
 
@@ -115,10 +118,6 @@
                                 </div>
 
                                 <div class="modal-body inputModal">
-                                    <label for="masanpham">masanpham:</label>
-                                    <br>
-                                    <input type="text" name="masanpham" id="masanpham" placeholder="mã sản phẩm" disabled/>
-                                    <br>
                                     <label for="tensanpham">Tên sản phẩm:</label>
                                     <br>
                                     <input type="text" name="tensanpham" id="tensanpham" placeholder="Nhập sản phẩm" />
@@ -129,8 +128,8 @@
                                     <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="updateSanPham()" type="button" id="luuSP" class="btn btn-primary order">Lưu thay đổi</button>
-                                    <button onclick="closeModel()" type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="submit" id="luuSP" class="btn btn-primary order">Lưu thay đổi</button>
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
                                 </div>
                             </form>
                         </div>
@@ -191,7 +190,7 @@
     <script>
         init();
         getSanPham(indexPage=1)
-        var totalPage;
+        
 
         function getTotalPage(){
             axios.get("http://localhost:8080/api/sanpham/totalpage")
@@ -200,17 +199,12 @@
                 localStorage.setItem("indexPage",1);
             })
         }
-        getTotalPage(indexPage);
-       
-        function getSanPham(index=1){
-
-            axios.get("http://localhost:8080/api/sanpham?page="+index)
+        function getSanPham(indexPage=1){
+            axios.get("http://localhost:8080/api/sanpham?page="+indexPage)
             .then(function(res){
-                renderSanPham(res.data);
+                renderSanPham(res.data)
             })
         }
-        
-        totalPage=localStorage.getItem("totalPage");
 
         function renderSanPham(data){
             let element=`
@@ -221,7 +215,6 @@
                                 <th scope="col">Số lượng tồn</th>
                                 <th scope="col">Giá</th>
                                 <th scope="col">Nhà cung ứng</th>
-                                <th scope="col"></th>
                             </tr>
                         </thead>
             `
@@ -231,77 +224,14 @@
                                 <td>${value.masanpham}</td>
                                 <td>${value.tensanpham}</td>
                                 <td>${value.soluongton}</td>
-                                <td>${value.gia} đ</td>
+                                <td>${value.gia}đ</td>
                                 <td>${value.nhacungung != null ? value.nhacungung.tenNhaCungUng : "không có"}</td>
-                                <td><a style="cursor: pointer" onclick="showModel(${value.masanpham})">chỉnh sửa</a></td>
                             </tr>
                 `
             })
             document.getElementById("table").innerHTML=element;
         }
-        function renderPagination(indexPage,max){     
-            let pagination = document.getElementById("pagination");
-            let element1 =`
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#"><</a></li>`
-            for(let i = 1 ; i<= max;i++){
-                element1+=`<li class="page-item"><a onclick="getSanPham(${i});renderPagination(${i},${totalPage})" class="page-link">${i}</a></li>`
-            }                           
-            let element3=`<li class="page-item"><a class="page-link" href="#">></a></li>
-                            </ul>
-                        </nav>`
 
-            pagination.innerHTML=element1+element3;
-            const pages = document.querySelectorAll('.page-item');
-            for (const page of pages) {
-                page.classList.remove('active');
-            } 
-            pages.item(indexPage).classList.add("active");
-        }
-
-        renderPagination(1,totalPage);
-
-        async function showModel(ma){
-            let masanpham=document.getElementById("masanpham");
-            let tensanpham=document.getElementById("tensanpham");
-            let giasanpham=document.getElementById("giasanpham");
-            const response = await axios.get("http://localhost:8080/api/sanpham/"+ma)
-            const data=response.data;
-            masanpham.value=ma;
-            tensanpham.value=data.tensanpham;
-            giasanpham.value=data.gia;
-            document.getElementById("model-chitietsanpham").style.display="block";
-        }
-
-        async function updateSanPham(){
-            let masanpham=document.getElementById("masanpham");
-            let tensanpham=document.getElementById("tensanpham");
-            let giasanpham=document.getElementById("giasanpham");
-            let sanpham={
-                masanpham:masanpham.value,
-                tensanpham:tensanpham.value,
-                gia:giasanpham.value
-            }
-            console.log(sanpham);
-            axios.put("http://localhost:8080/api/sanpham",sanpham)
-            .then(function(res){      
-                if(res.data == 1){
-                    showToast("chỉnh sữa sản phẩm thành công!","success");
-                    setTimeout(closeModel(),1500);
-                }else{
-                    showToast("chỉnh sữa sản phẩm không thành công!","error");
-                    // setTimeout(closeModel(),1500);
-                }
-            })
-            .catch(function(error){
-                showToast("chỉnh sữa sản phẩm không thành công!","error");
-            })
-        }
-
-        function closeModel(){
-            document.getElementById("model-chitietsanpham").style.display="none";
-        }
     </script>
 </body>
 

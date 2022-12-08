@@ -13,8 +13,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <!-- <script src="nhapkho.js" defer></script>
-    <script src="validate_input.js" defer></script> -->
+    <!-- <script src="validate_input.js" defer></script>
+    <script src="addProduct.js" defer></script> -->
 
     <script src="/function.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -25,10 +25,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-8D+M+7Y6jVsEa7RD6Kv/Z7EImSpNpQllgaEIQAtqHcI0H6F4iZknRj0Nx1DCdB+TwBaS+702BGWYC0Ze2hpExQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.js" integrity="sha512-Y+cHVeYzi7pamIOGBwYHrynWWTKImI9G78i53+azDb1uPmU1Dz9/r2BLxGXWgOC7FhwAGsy3/9YpNYaoBy7Kzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body onload="renderForm()" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
     <!-- Header -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -65,57 +64,18 @@
             </div>
             <div class="clearfix"></div>
         </div>
-
     </nav>
 
     <!-- Center-->
     <div class="center-content" class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-sm-7">
-                    <h2 class="thucdon">Danh mục sản phẩm</h2>
-                    <table id="table" class='table'>
-                        
+                <div class="col-12">
+                    <div class="form-add">
+                        <form id="addProduct" action="#" name="add-product">
                             
-                    </table>
-                </div>
-                <div class="col-sm-5">
-                    <div class="modal-content-phieunhap">
-                        <form action="#" name="add-product">
-                        <div class="modal-header">
-                            <h2 class="modal-title">Phiếu nhập</h2>
-                        </div>
-                        <div class="modal-input">
-                            <div class="cart-maNCU">
-                                <label for="maNCU">Chọn nhà cung ứng:</label>
-                                <select name="" id="maNCU" class="form-control" required="required">
 
-                                </select>                        
-                            </div>
-                            <div class="cart-time">
-                                <label for="ngaynhap">Ngày nhập:</label>
-                                <br>
-                                <input type="date" name="ngaynhap" id="ngaynhap" placeholder="Nhập thời gian nhận" />
-                            </div>
-                        </div>
-                        <div class="modal-body">
-                            <div class="cart-row">
-                                <span class="cart-item cart-header cart-column">Sản Phẩm</span>
-                                <span class="cart-price cart-header cart-column">Giá</span>
-                                <span class="cart-quantity cart-header cart-column">Số Lượng</span>
-                            </div>
-                            <div class="cart-items">
-                                
-                            </div>
-                            <div class="cart-total">
-                                <strong class="cart-total-title">Tổng Cộng:</strong>
-                                <span class="cart-total-price">0VNĐ</span>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary order" id="nhaphang">Xác nhận</button>
-                        </div>
-                    </form>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -172,104 +132,41 @@
     </div>
     <script>
         init();
-        getSanPham();
-        function getSanPham(){
-            axios.get("http://localhost:8080/api/sanpham")
-            .then((result) => {
-                renderSanPham(result.data);
-            }).catch((err) => {
-                showToast("xảy ra lỗi!",'error')
-            });
-            renderNCU();
-        }
 
-        function renderSanPham(data){
-            let element=`
-                        <thead>
-                            <tr>
-                                <th scope="col">Mã sản phẩm</th>
-                                <th scope="col">Tên sản phẩm</th>
-                                <th scope="col">Giá</th>
-                                <th scope="col">Mã nhà cung ứng</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-            `
-            data.map(value=>{
-                element+=`
-                        <tr class="content-product">
-                            <td>${value.masanpham}</td>
-                            <td class="content-product-h3">${value.tensanpham}</td>
-                            <td class="price"><span class="money">${value.gia} đ</span></td>
-                            <td class="idNCU">${value.nhacungung == null?"trống":value.nhacungung.tenNhaCungUng}</td>
-                            <td><button onclick="addtoCart(${value.masanpham})" type="button" class="btn btn-cart">Thêm Vào Phiếu</button></td>
-                        </tr>
-                `
+        function renderForm(){
+            let form = document.getElementById("addProduct");
+            var element=`
+                            <h2>Thêm sản phẩm</h2>
+                            <label for="tensanpham">Tên sản phẩm:</label>
+                            <input type="text" name="tensanpham" id="tensanpham" placeholder="Nhập sản phẩm" />
+                            <label for="soluongton">Số lượng tồn:</label>
+                            <input type="number" name="soluongton" id="soluongton" placeholder="Nhập số lượng tồn" />
+                            <label for="giasanpham">Giá:</label>
+                            <input type="number" name="giasanpham" id="giasanpham" placeholder="Nhập giá" />
+                            <label for="manhacungung">Nhà cung ứng:</label>
+                            <select id="ncu" class="form-control" aria-label=".form-select-sm example">`
+
+            axios.get("http://localhost:8080/api/nhacungung")
+            .then(function(response){
+                response.data.map(function(value){
+                    localStorage.setItem("listNhaCungUng",JSON.stringify(response.data));
+                })    
             })
-            document.getElementById("table").innerHTML=element;
-        }
-
-        async function renderNCU(){
-            let response = await axios.get("http://localhost:8080/api/nhacungung");
-            let element=``;
-            response.data.map(value => {
-                element+=`<option value="${value.maNhaCungUng}">${value.tenNhaCungUng}</option>`
+            let listncu=JSON.parse(localStorage.getItem("listNhaCungUng"));                 
+            listncu.map(value => {
+                element+=`<option value="${value.maNhaCungUng}">${value.tenNhaCungUng}</option>`;
             })
-            document.getElementById("maNCU").innerHTML=element;
+                                
+              element+= `</select>
+                        <br>
+                        <button type="submit" id="themsp">Thêm</button>
+                        `
+            form.innerHTML=element;
         }
 
-        function checkexist(list,masanpham){
-            let check = false
-            list.map(function(item){
-                if(item.masanpham===masanpham){
-                    check = true;
-                }
-                });
-            return check;
+        function ThemSanPham(){
+            
         }
-
-        function addtoCart(masanpham){
-            let cart =JSON.parse(localStorage.getItem("cart"))
-            let list=cart.list;
-            if (checkexist(list,masanpham)){
-                list.map(function(item){
-                    if(item.masanpham===masanpham){
-                        item['soluong']+=1;
-                        showToast("thêm vào giỏ hàng!",'info');
-                    }
-                });
-            }else{
-                sanpham={
-                    masanpham:masanpham,
-                    soluong:1,
-                }
-                list.push(sanpham);
-                showToast("thêm vào giỏ hàng!",'info');
-            }
-            cart.list=list;
-            let tongtien=0;
-            list.map(function(item){
-                tongtien+=item.gia*item.soluong;
-            })
-            cart.tongtien=tongtien;
-            localStorage.setItem("cart",JSON.stringify(cart));
-            console.log(cart);
-        }
-
-        function renderPhieuNhap(){ 
-            let element=`<div class="cart-row cart-items">
-                        <span class="cart-item  cart-column">${value.tenmon}</span>
-                        <span class="cart-price cart-column">${value.gia}</span>
-                        <span class="cart-quantity cart-column">${value.soluong}</span>
-                        <span class="cart-quantity cart-column">${value.soluong*value.gia}</span>
-                        <span class="cart-quantity cart-column">
-                            <button onclick="removeItemCart(${value.mamon})" class="btn btn-danger" type="button">Xóa</button>
-                        </span>
-                    </div>`
-        }
-
-        var modal = document.getElementById("myModal");
-        var btn = document.getElementById("cart");
     </script>
 </body>
 

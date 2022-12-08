@@ -129,7 +129,7 @@
                                     <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="updateSanPham()" type="button" id="luuSP" class="btn btn-primary order">Lưu thay đổi</button>
+                                    <button type="button" id="luuSP" class="btn btn-primary order">Lưu thay đổi</button>
                                     <button onclick="closeModel()" type="button" class="btn btn-secondary close-footer">Đóng</button>
                                 </div>
                             </form>
@@ -274,29 +274,16 @@
             document.getElementById("model-chitietsanpham").style.display="block";
         }
 
-        async function updateSanPham(){
+        function updateSanPham(){
             let masanpham=document.getElementById("masanpham");
             let tensanpham=document.getElementById("tensanpham");
             let giasanpham=document.getElementById("giasanpham");
             let sanpham={
-                masanpham:masanpham.value,
-                tensanpham:tensanpham.value,
-                gia:giasanpham.value
+                masanpham:masanpham,
+                tensanpham:tensanpham,
+                gia:giasanpham
             }
-            console.log(sanpham);
             axios.put("http://localhost:8080/api/sanpham",sanpham)
-            .then(function(res){      
-                if(res.data == 1){
-                    showToast("chỉnh sữa sản phẩm thành công!","success");
-                    setTimeout(closeModel(),1500);
-                }else{
-                    showToast("chỉnh sữa sản phẩm không thành công!","error");
-                    // setTimeout(closeModel(),1500);
-                }
-            })
-            .catch(function(error){
-                showToast("chỉnh sữa sản phẩm không thành công!","error");
-            })
         }
 
         function closeModel(){
