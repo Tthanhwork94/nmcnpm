@@ -322,7 +322,7 @@
             document.getElementsByClassName("modal-body")[0].innerHTML=element;
         }
 
-        function insertPhieuNhap(){
+        async function insertPhieuNhap(){
             let manhanvien =JSON.parse(localStorage.getItem("account")).mataikhoan;
             let manhacungung=document.getElementById("maNCU").value;
             let phieunhap={
@@ -330,43 +330,10 @@
                 manhacungung:manhacungung
             }
 
-            axios.post("http://localhost:8080/api/phieunhap",phieunhap)
-            .then(function(res){
-                console.log(res.data);
-                insertChiTietPhieuNhap(res.data)
-            })
-            .catch(function(error){
-                console.log(error);
-            }); 
+            let response = await axios.post("http://localhost:8080/api/phieunhap",phieunhap); 
             console.log(phieunhap);
+            console.log(response.data);
             
-        }
-
-        function insertChiTietPhieuNhap(maphieunhap){
-            let cart=JSON.parse(localStorage.getItem("cart"));
-            let list=cart.list;
-            let danhsach=[];
-            list.map(value => {
-                let chitiet = {
-                    "maPhieuNhap":maphieunhap,
-                    "masanpham":value.masanpham,
-                    "dongianhap": value.gia,
-                    "soluongnhap": value.soluong
-                }
-                danhsach.push(chitiet);
-            })
-            axios.post("http://localhost:8080/api/chitietphieunhap",danhsach)
-            .then(function(res){
-                if(res.data == 1){
-                    showToast("Nhập thành công!",'success');
-                }else{
-                    showToast("Nhập thất bại!",'error');
-                }
-            })
-            cart.list=[];
-            cart.tongtien=0;
-            renderPhieuNhap(cart);
-            localStorage.setItem("cart",cart);
         }
     </script>
 </body>

@@ -205,7 +205,7 @@
                         <span class="cart-quantity cart-column">${value.soluong}</span>
                         <span class="cart-quantity cart-column">${value.soluong*value.gia}</span>
                         <span class="cart-quantity cart-column">
-                            <button onclick="removeCart(${value.masanpham})" class="btn btn-danger" type="button">Xóa</button>
+                            <button class="btn btn-danger" type="button">Xóa</button>
                         </span>
                     </div>
                 `
@@ -356,7 +356,6 @@
                 showToast("thiếu thời gian nhận dự kiến!",'error');
                 return;
             }
-
             let thongtin={
                 thoigiannhan:new Date(thoigiannhan.value).toISOString().slice(0, 19).replace('T', ' ')+".000",
                 makhachhang:makhachhang
@@ -364,7 +363,7 @@
             console.log(thongtin);
             axios.post("http://localhost:8080/api/dondathang",thongtin)
             .then(res=>{
-                insertDonChiTiet(res.data);
+                console.log(res.data);
             })
             .catch(error=>{
                 console.log(error);
@@ -389,9 +388,6 @@
                 if(res.data==1){
                     showToast("Đặt hàng thành công!",'success');
                     cart.list=[];
-                    cart.tongtien=0;
-                    localStorage.setItem("cart",JSON.stringify(cart));
-                    renderCart();
                 }else{
                     showToast("Đặt hàng thất bại!",'error');
                 }

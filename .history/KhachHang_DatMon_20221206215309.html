@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Order System HCMUS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="index.js" defer></script>
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <!-- Header -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="KhachHang_Home.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="KhachHang_Home.html">Trang chủ</a></li>
+                    <li><a href="KhachHang_DatMon.html">Đặt món</a></li>
+                    <li><a href="KhachHang_DonHangCuaToi.html">Đơn hàng của tôi</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="KhachHang_ThongTin.html">Thông tin</a></li>
+                            <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
+                                    xuất</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!-- modal gio hang -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <form action="#" name="validateInput">
+                <div class="modal-header">
+                    <h2 class="modal-title">Giỏ Hàng</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="cart-row">
+                        <span class="cart-item cart-header cart-column">Sản Phẩm</span>
+                        <span class="cart-price cart-header cart-column">Giá</span>
+                        <span class="cart-quantity cart-header cart-column">Số Lượng</span>
+                    </div>
+                    <div class="cart-items">
+
+                    </div>
+                    <div class="cart-total">
+                        <strong class="cart-total-title">Tổng Cộng:</strong>
+                        <span class="cart-total-price">0VNĐ</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    
+                        <div class="cart-time">
+                            <label for="thoigiannhan">Thời gian nhận:</label>
+                            <input type="datetime-local" name="thoigiannhan" id="thoigiannhan" placeholder="Nhập thời gian nhận" />
+                        </div>
+                        <hr>
+                        <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                        <button type="submit" id="thanhtoan" class="btn btn-primary order">Thanh Toán</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Center-->
+    <div class="center-content" class="container-fluid">
+        <div class="container"> 
+            <div class="row">
+                <div class="col-12 products">
+                    <h2 class="thucdon">Thực đơn hôm nay</h2>
+                    <button class="glyphicon glyphicon-shopping-cart giohang"  id="cart">
+                        Giỏ hàng
+                    </button>
+                    <table class='table'>
+                        <thead>
+                            <tr>
+                                <th scope="col">Mã sản phẩm</th>
+                                <th scope="col">Tên sản phẩm</th>
+                                <th scope="col">Giá</th>
+                                <th scope="col">Số lượng tồn</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="content-product">
+                                <td>1</td>
+                                <td class="content-product-h3">Cơm</td>
+                                <td class="price"><span class="money">25000đ</span></td>
+                                <td>100</td>
+                                <td><button type="button" class="btn btn-cart">Thêm Vào Giỏ</button></td>
+                            </tr>
+                            <tr class="content-product">
+                                <td>2</td>
+                                <td class="content-product-h3">Rau</td>
+                                <td class="price"><span class="money">5000đ</span></td>
+                                <td>100</td>
+                                <td><button type="button" class="btn btn-cart">Thêm Vào Giỏ</button></td>
+                            </tr>
+                            <tr class="content-product">
+                                <td>1</td>
+                                <td class="content-product-h3">Thịt gà</td>
+                                <td class="price"><span class="money">5000đ</span></td>
+                                <td>100</td>
+                                <td><button type="button" class="btn btn-cart">Thêm Vào Giỏ</button></td>
+                            </tr>
+                            <tr class="content-product">
+                                <td>1</td>
+                                <td class="content-product-h3">Thịt heo</td>
+                                <td class="price"><span class="money">5000đ</span></td>
+                                <td>100</td>
+                                <td><button type="button" class="btn btn-cart">Thêm Vào Giỏ</button></td>
+                            </tr>
+                            <tr class="content-product">
+                                <td>1</td>
+                                <td class="content-product-h3">Thịt bò</td>
+                                <td class="price"><span class="money">5000đ</span></td>
+                                <td>100</td>
+                                <td><button type="button" class="btn btn-cart">Thêm Vào Giỏ</button></td>
+                            </tr>
+                            <tr class="content-product">
+                                <td>1</td>
+                                <td class="content-product-h3">Nước suối</td>
+                                <td class="price"><span class="money">5000đ</span></td>
+                                <td>100</td>
+                                <td><button type="button" class="btn btn-cart">Thêm Vào Giỏ</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>      
+    </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Dịch vụ</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#">Đối tác</a></li>
+                        <li class="nav-item mb-2"><a href="#">Khách hàng</a></li>
+                        <li class="nav-item mb-2"><a href="#">Nhân viên</a></li>
+                        <li class="nav-item mb-2"><a href="#">Tài xế</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Liên hệ</h3>
+                    <ul class="nav flex-column">
+                        <li>+84 935143595</li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Tiktok</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Email</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Công ty</h3>
+                    <ul class="nav flex-column">
+                        <li><a href="#">Lịch sử</a></li>
+                        <li><a href="#">Câu chuyện</a></li>
+                        <li><a href="#">Đội ngũ</a></li>
+                        <li><a href="#">Công việc</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <form>
+                        <h2>Đăng ký nhận thông tin</h2>
+                        <div>
+                            <label for="newsletter1" class="visually-hidden">Email</label>
+                            <input id="newsletter1" type="text" class="form-control" placeholder="Nhập email ở đây">
+                            <br>
+                            <button class="btn btn-primary" type="button">Đăng ký</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

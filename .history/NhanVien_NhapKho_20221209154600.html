@@ -360,12 +360,10 @@
                 if(res.data == 1){
                     showToast("Nhập thành công!",'success');
                 }else{
-                    showToast("Nhập thất bại!",'error');
+                    showToast("Nhập thành công!",'success');
                 }
             })
             cart.list=[];
-            cart.tongtien=0;
-            renderPhieuNhap(cart);
             localStorage.setItem("cart",cart);
         }
     </script>

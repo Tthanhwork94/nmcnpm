@@ -357,8 +357,9 @@
                 return;
             }
 
+            // new Date(thoigiannhan.value).toISOString().slice(0, 10)+' '+new Date(thoigiannhan.value).toLocaleTimeString().slice(0,8)
             let thongtin={
-                thoigiannhan:new Date(thoigiannhan.value).toISOString().slice(0, 19).replace('T', ' ')+".000",
+                thoigiannhan:new Date(thoigiannhan.value).toISOString().slice(0, 10)+' '+new Date(thoigiannhan.value).toLocaleTimeString().slice(0,8),
                 makhachhang:makhachhang
             }
             console.log(thongtin);

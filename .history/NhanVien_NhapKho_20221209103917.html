@@ -134,7 +134,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                                <button onclick="insertPhieuNhap()" type="button" class="btn btn-primary order" id="nhaphang">Xác nhận</button>
+                                <button type="submit" class="btn btn-primary order" id="nhaphang">Xác nhận</button>
                         </div>
                     </form>
                     </div>
@@ -323,50 +323,7 @@
         }
 
         function insertPhieuNhap(){
-            let manhanvien =JSON.parse(localStorage.getItem("account")).mataikhoan;
-            let manhacungung=document.getElementById("maNCU").value;
-            let phieunhap={
-                manhanvien:manhanvien,
-                manhacungung:manhacungung
-            }
-
-            axios.post("http://localhost:8080/api/phieunhap",phieunhap)
-            .then(function(res){
-                console.log(res.data);
-                insertChiTietPhieuNhap(res.data)
-            })
-            .catch(function(error){
-                console.log(error);
-            }); 
-            console.log(phieunhap);
             
-        }
-
-        function insertChiTietPhieuNhap(maphieunhap){
-            let cart=JSON.parse(localStorage.getItem("cart"));
-            let list=cart.list;
-            let danhsach=[];
-            list.map(value => {
-                let chitiet = {
-                    "maPhieuNhap":maphieunhap,
-                    "masanpham":value.masanpham,
-                    "dongianhap": value.gia,
-                    "soluongnhap": value.soluong
-                }
-                danhsach.push(chitiet);
-            })
-            axios.post("http://localhost:8080/api/chitietphieunhap",danhsach)
-            .then(function(res){
-                if(res.data == 1){
-                    showToast("Nhập thành công!",'success');
-                }else{
-                    showToast("Nhập thất bại!",'error');
-                }
-            })
-            cart.list=[];
-            cart.tongtien=0;
-            renderPhieuNhap(cart);
-            localStorage.setItem("cart",cart);
         }
     </script>
 </body>
