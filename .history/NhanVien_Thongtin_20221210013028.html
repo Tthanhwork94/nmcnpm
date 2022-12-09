@@ -227,14 +227,14 @@
         }
         function renderThongtin(data){
             let thead = `<tr>
-                            <th>Mã nhân viên</th>
+                            <th>Mã khách hàng</th>
                             <th>Tên khách hàng</th>
                             <th>Địa chỉ</th>
                             <th>Email</th>
                         </tr>`
             let element = ``;
             element+=`<tr class="table-row">
-                            <td>${data.manhanvien}</td>
+                            <td>${data.makhachhang}</td>
                             <td>${data.hoten}</td>
                             <td>${data.diachi}</td>
                             <td>${data.email}</td>
@@ -316,8 +316,8 @@
                 diachi:diachi.value,
                 hoten:hoten.value
             }
-            console.log(thongtin);
-            axios.put("http://localhost:8080/api/nhanvien",thongtin)
+            // console.log(thongtin);
+            axios.put("http://localhost:8080/api/khachhang",thongtin)
             .then(function(response){
                 getThongtin();
                 showToast("đổi thông tin thành công!",'success');

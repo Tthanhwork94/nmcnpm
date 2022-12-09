@@ -316,8 +316,8 @@
                 diachi:diachi.value,
                 hoten:hoten.value
             }
-            console.log(thongtin);
-            axios.put("http://localhost:8080/api/nhanvien",thongtin)
+            // console.log(thongtin);
+            axios.put("http://localhost:8080/api/khachhang",thongtin)
             .then(function(response){
                 getThongtin();
                 showToast("đổi thông tin thành công!",'success');

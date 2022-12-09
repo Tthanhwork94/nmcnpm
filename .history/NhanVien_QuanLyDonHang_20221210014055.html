@@ -52,7 +52,7 @@
                     <li><a href="NhanVien_NhapKho.html">Nhập kho</a></li>
                     <li><a href="NhanVien_ThongKe.html">Thống kê</a></li>
                     <li class="dropdown">
-                        <a href="#" id="account" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="NhanVien_ThongTin.html">Thông tin</a></li>
                             <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
@@ -73,9 +73,16 @@
                 <div class="col-12 products">
                     <h2>Danh sách đơn hàng</h2>
                     <br>
-            
+                    <form action="#" name="add-product">
+                        <label class="labelNhap" for="madonhang">Mã đơn hàng:</label>
+                        <input class="inputNhap" type="text" name="madonhang" id="madonhang" placeholder="Nhập mã đơn hàng" />
+                        <button type="submit" id="detail" class="btn-modal">Chi tiết</button> 
+                        <button type="submit" id="dagiao" class="btn-modal dagiao">Đã giao</button>
+                    </form>
+                    <br>
+                    <br>
                     <hr>
-                    <table id="table" class='table'>
+                    <table class='table'>
                         <thead>
                             <tr>
                                 <th scope="col">Mã đơn đặt</th>
@@ -86,11 +93,68 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                               
+                        <tbody>
+                            <tr class="content-order">
+                                <td>1</td>
+                                <td>2022-11-10 10:00</td>
+                                <td>2022-11-10 12:00</td>
+                                <td>30000đ</td>
+                                <td>Đã giao</td>
+                            </tr>
+                            <tr class="content-order">
+                                <td>1</td>
+                                <td>2022-11-10 10:00</td>
+                                <td>2022-11-10 12:00</td>
+                                <td>30000đ</td>
+                                <td>Đã giao</td>
+                            </tr>
+                            <tr class="content-order">
+                                <td>1</td>
+                                <td>2022-11-10 10:00</td>
+                                <td>2022-11-10 12:00</td>
+                                <td>30000đ</td>
+                                <td>Đã giao</td>
+                            </tr>
+                            <tr class="content-order">
+                                <td>1</td>
+                                <td>2022-11-10 10:00</td>
+                                <td>2022-11-10 12:00</td>
+                                <td>30000đ</td>
+                                <td>Đã giao</td>
+                            </tr>
+                            <tr class="content-order">
+                                <td>1</td>
+                                <td>2022-11-10 10:00</td>
+                                <td>2022-11-10 12:00</td>
+                                <td>30000đ</td>
+                                <td>Đã giao</td>
+                            </tr>
+                            <tr class="content-order">
+                                <td>1</td>
+                                <td>2022-11-10 10:00</td>
+                                <td>2022-11-10 12:00</td>
+                                <td>30000đ</td>
+                                <td>Đã giao</td>
+                            </tr>
+                            <tr class="content-order">
+                                <td>1</td>
+                                <td>2022-11-10 10:00</td>
+                                <td>2022-11-10 12:00</td>
+                                <td>30000đ</td>
+                                <td>Đã giao</td>
+                            </tr>
+       
+                        </tbody>        
                     </table>
-                    <div id="pagination">
-
-                    </div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                      </nav>
                     <!-- modal gio hang -->
                     <div id="exampleModal" class="modal">
                         <div class="modal-content">
@@ -99,7 +163,7 @@
                                 <span class="close">&times;</span>
                             </div>
                             <div class="modal-body">
-                                <table id="dondathangchitiet" class="table table-striped">
+                                <table class="table table-striped">
                                     <thead>
                                         <tr>
                                             <th>Mã đơn hàng</th>
@@ -109,7 +173,30 @@
                                             <th>Đơn giá</th>
                                         </tr>
                                     </thead>
-                                   
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>Cơm</td>
+                                            <td>1</td>
+                                            <td>5000đ</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>2</td>
+                                            <td>Rau</td>
+                                            <td>2</td>
+                                            <td>10000đ</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>3</td>
+                                            <td>Thịt gà</td>
+                                            <td>1</td>
+                                            <td>5000đ</td>
+                                        </tr>
+
+                                    </tbody>
                                 </table>
                             </div>
                             <div class="modal-footer">
@@ -172,72 +259,7 @@
         </div>
     </div>
     <script>
-       init();
-        getDonHang();
-        function getDonHang(){
-            axios.get("http://localhost:8080/api/dondathang")
-            .then((result) => {
-                renderDonHang(result.data);
-            }).catch((err) => {
-                
-            });
-        }
-
-        function renderDonHang(data){
-            let element=`<thead>
-                            <tr>
-                                <th scope="col">Mã đơn đặt</th>
-                                <th scope="col">TG đặt</th>
-                                <th scope="col">TG nhận</th>
-                                <th scope="col">Tổng tiền</th>
-                                <th scope="col">Tình trạng đơn</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>`
-            data.map(value=>{
-                if(value.tinhtrangdon==='chưa giao'){
-                    element+=`
-                        <tr class="content-order">
-                            <td>${value.madondathang}</td>
-                            <td>${new Date(value.tgdat).getDate()+"/"+(new Date(value.tgdat).getMonth()+1)+"/"+new Date(value.tgdat).getFullYear()+" lúc "+new Date(value.tgdat).getHours() +"H"}</td>
-                            <td>${new Date(value.tgnhandukien).getDate()+"/"+(new Date(value.tgnhandukien).getMonth()+1)+"/"+new Date(value.tgnhandukien).getFullYear()+" lúc "+new Date(value.tgnhandukien).getHours() +"H"}</td>
-                            <td>${value.tongtien}</td>
-                            <td>${value.tinhtrangdon}</td>
-                            <td><a onclick="open_model(${value.madondathang})" style="cursor:pointer">xem chi tiết</a></td>
-                            <td><button onclick="giaohang(${value.madondathang})" type="button" class="btn btn-primary">xác nhận</button></td>
-                        </tr>
-                `
-                }else{
-                    element+=`
-                        <tr class="content-order">
-                            <td>${value.madondathang}</td>
-                            <td>${new Date(value.tgdat).getDate()+"/"+(new Date(value.tgdat).getMonth()+1)+"/"+new Date(value.tgdat).getFullYear()+" lúc "+new Date(value.tgdat).getHours() +"H"}</td>
-                            <td>${new Date(value.tgnhandukien).getDate()+"/"+(new Date(value.tgnhandukien).getMonth()+1)+"/"+new Date(value.tgnhandukien).getFullYear()+" lúc "+new Date(value.tgnhandukien).getHours() +"H"}</td>
-                            <td>${value.tongtien}</td>
-                            <td>${value.tinhtrangdon}</td>
-                            <td><a onclick="open_model(${value.madondathang})" style="cursor:pointer">xem chi tiết</a></td>
-                            <td><button type="button" class="btn btn-success" disabled>đã giao ✔</button></td>
-                        </tr>
-                `
-                }
-            })
-            document.getElementById("table").innerHTML=element;
-        }
-
-        function giaohang(madonhang){
-            let thongtin={
-                madondathang:madonhang
-            }
-            axios.put("http://localhost:8080/api/dondathang",thongtin)
-            .then(res=>{
-                getDonHang();
-                showToast("xác nhận đơn thành công!",'success');
-            })
-            .catch(error=>{
-                showToast("xác nhận đơn thất bại!",'error');
-            })
-        }
+        
     </script>
 </body>
 

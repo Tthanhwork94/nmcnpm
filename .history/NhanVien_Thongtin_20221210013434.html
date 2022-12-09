@@ -316,7 +316,7 @@
                 diachi:diachi.value,
                 hoten:hoten.value
             }
-            console.log(thongtin);
+            // console.log(thongtin);
             axios.put("http://localhost:8080/api/nhanvien",thongtin)
             .then(function(response){
                 getThongtin();

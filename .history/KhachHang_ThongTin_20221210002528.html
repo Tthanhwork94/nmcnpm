@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Employee Order System HCMUS</title>
+    <title>Order System HCMUS</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
@@ -16,7 +16,6 @@
     <!-- <script src="fix-inf.js" defer></script>
     <script src="fix-password.js" defer></script>
     <script src="validate_input.js" defer></script> -->
-
     <script src="/function.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
@@ -38,25 +37,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="NhanVien_Home.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
+                <a class="navbar-brand" href="KhachHang_Home.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="NhanVien_Home.html">Trang chủ</a></li>
-                    <li><a href="NhanVien_QuanLyDonHang.html">Quản lý đơn hàng</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sản phẩm<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="NhanVien_ThemSanPham.html">Thêm sản phẩm</a></li>
-                            <li><a href="NhanVien_DanhMucSanPham.html">Danh mục sản phẩm</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="NhanVien_NhapKho.html">Nhập kho</a></li>
-                    <li><a href="NhanVien_ThongKe.html">Thống kê</a></li>
+                    <li><a href="KhachHang_Home.html">Trang chủ</a></li>
+                    <li><a href="KhachHang_DatMon.html">Đặt món</a></li>
+                    <li><a href="KhachHang_DonHangCuaToi.html">Đơn hàng của tôi</a></li>
                     <li class="dropdown">
                         <a href="#" id="account" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="NhanVien_ThongTin.html">Thông tin</a></li>
+                            <li><a href="KhachHang_ThongTin.html">Thông tin</a></li>
                             <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
                                     xuất</a></li>
                         </ul>
@@ -65,17 +56,17 @@
             </div>
             <div class="clearfix"></div>
         </div>
-
+        
     </nav>
     <!-- Center-->
     <div class="center-content" class="container-fluid">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h2>Thông tin nhân viên</h2>
+                    <h2>Thông tin khách hàng</h2>
                     <table id="table" class='table'>
                         <tr>
-                            <th>Mã nhân viên</th>
+                            <th>Mã khách hàng</th>
                             <th>Họ tên</th>
                             <th>Địa chỉ</th>
                             <th>Email</th>
@@ -90,6 +81,7 @@
                     <!-- Modal -->
                     <!-- Button trigger modal -->
                     <button id="fix-inf" class="btn-modal">Chỉnh sửa</button>
+
                     <!-- Modal -->
                     <div id="Model-fix-inf" class="modal">
                         <div class="modal-content">
@@ -116,16 +108,14 @@
                                     <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="closeinf()" type="button" class="btn btn-secondary close-footer">Đóng</button>
-                                    <button onclick="updateinfor()" type="button" id="luuInf" class="btn btn-primary order">Lưu thay
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
                                         đổi</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                     <!-- Đổi mật khẩu -->
-                    <!-- Modal -->
-                    <!-- Button trigger modal -->
                     <button id="fix-password" class="btn-modal">Đổi mật khẩu</button>
                     <!-- Modal -->
                     <div id="Model-fix-password" class="modal">
@@ -153,8 +143,8 @@
                                     <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="closemdlchangepwd()" type="button" class="btn btn-secondary close-footer2">Đóng</button>
-                                    <button onclick="doiMatKhau()" type="button" class="btn btn-primary order2">Lưu thay đổi</button>
+                                    <button type="button" class="btn btn-secondary close-footer2">Đóng</button>
+                                    <button type="submit" class="btn btn-primary order2">Lưu thay đổi</button>
                                 </div>
                             </form>
                         </div>
@@ -165,7 +155,7 @@
         </div>
     </div>
     <!-- Footer -->
-    <div class="footer">
+    <div class="footer navbar">
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
@@ -218,7 +208,7 @@
         async function getThongtin(){
             let mataikhoan = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
             try {
-                let data = await axios.get("http://localhost:8080/api/nhanvien/"+mataikhoan);
+                let data = await axios.get("http://localhost:8080/api/khachhang/"+mataikhoan);
                 rows = data.data;
                 renderThongtin(rows);
             } catch (error) {
@@ -227,14 +217,14 @@
         }
         function renderThongtin(data){
             let thead = `<tr>
-                            <th>Mã nhân viên</th>
+                            <th>Mã khách hàng</th>
                             <th>Tên khách hàng</th>
                             <th>Địa chỉ</th>
                             <th>Email</th>
                         </tr>`
             let element = ``;
             element+=`<tr class="table-row">
-                            <td>${data.manhanvien}</td>
+                            <td>${data.makhachhang}</td>
                             <td>${data.hoten}</td>
                             <td>${data.diachi}</td>
                             <td>${data.email}</td>
@@ -263,7 +253,7 @@
                 matkhaucu:matkhaucu,
                 matkhaumoi:matkhaumoi
             }
-            axios.put("http://localhost:8080/api/taikhoan",thongtinmatkhau)
+            axios.post("http://localhost:8080/api/changepassword",thongtinmatkhau)
             .then(function(response){
                 if(response.data!=-1){
                     showToast("đổi mật khẩu thành công!",'success');
@@ -285,7 +275,7 @@
         async function getThongtintoModel(){
             let madoitac = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
             try {
-                let data = await axios.get("http://localhost:8080/api/nhanvien/"+madoitac);
+                let data = await axios.get("http://localhost:8080/api/khachhang/"+madoitac);
                 rows = data.data;
                 showModelupdateInfor(rows);
             } catch (error) {
@@ -294,6 +284,7 @@
         }
         function showModelupdateInfor (data) {
             var hoten =document.getElementById("hoten");
+            var sdt =document.getElementById("sdt");
             var email =document.getElementById("email");
             var diachi =document.getElementById("diachi");
             hoten.value=data.hoten;
@@ -306,20 +297,21 @@
         }
 
         function updateinfor(){
-            let maacc = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
+            let makhachhang = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
             var hoten =document.getElementById("hoten");
+            var sdt =document.getElementById("sdt");
             var email =document.getElementById("email");
             var diachi =document.getElementById("diachi");
             let thongtin={
-                maacc:maacc,
+                makhachhang:makhachhang,
                 email:email.value,
                 diachi:diachi.value,
+                sodienthoai:sdt.value,
                 hoten:hoten.value
             }
-            console.log(thongtin);
-            axios.put("http://localhost:8080/api/nhanvien",thongtin)
+            // console.log(thongtin);
+            axios.post("http://localhost:8080/api/khachhang/infor/update",thongtin)
             .then(function(response){
-                getThongtin();
                 showToast("đổi thông tin thành công!",'success');
                 closeinf()
             })

@@ -173,71 +173,7 @@
     </div>
     <script>
        init();
-        getDonHang();
-        function getDonHang(){
-            axios.get("http://localhost:8080/api/dondathang")
-            .then((result) => {
-                renderDonHang(result.data);
-            }).catch((err) => {
-                
-            });
-        }
-
-        function renderDonHang(data){
-            let element=`<thead>
-                            <tr>
-                                <th scope="col">Mã đơn đặt</th>
-                                <th scope="col">TG đặt</th>
-                                <th scope="col">TG nhận</th>
-                                <th scope="col">Tổng tiền</th>
-                                <th scope="col">Tình trạng đơn</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>`
-            data.map(value=>{
-                if(value.tinhtrangdon==='chưa giao'){
-                    element+=`
-                        <tr class="content-order">
-                            <td>${value.madondathang}</td>
-                            <td>${new Date(value.tgdat).getDate()+"/"+(new Date(value.tgdat).getMonth()+1)+"/"+new Date(value.tgdat).getFullYear()+" lúc "+new Date(value.tgdat).getHours() +"H"}</td>
-                            <td>${new Date(value.tgnhandukien).getDate()+"/"+(new Date(value.tgnhandukien).getMonth()+1)+"/"+new Date(value.tgnhandukien).getFullYear()+" lúc "+new Date(value.tgnhandukien).getHours() +"H"}</td>
-                            <td>${value.tongtien}</td>
-                            <td>${value.tinhtrangdon}</td>
-                            <td><a onclick="open_model(${value.madondathang})" style="cursor:pointer">xem chi tiết</a></td>
-                            <td><button onclick="giaohang(${value.madondathang})" type="button" class="btn btn-primary">xác nhận</button></td>
-                        </tr>
-                `
-                }else{
-                    element+=`
-                        <tr class="content-order">
-                            <td>${value.madondathang}</td>
-                            <td>${new Date(value.tgdat).getDate()+"/"+(new Date(value.tgdat).getMonth()+1)+"/"+new Date(value.tgdat).getFullYear()+" lúc "+new Date(value.tgdat).getHours() +"H"}</td>
-                            <td>${new Date(value.tgnhandukien).getDate()+"/"+(new Date(value.tgnhandukien).getMonth()+1)+"/"+new Date(value.tgnhandukien).getFullYear()+" lúc "+new Date(value.tgnhandukien).getHours() +"H"}</td>
-                            <td>${value.tongtien}</td>
-                            <td>${value.tinhtrangdon}</td>
-                            <td><a onclick="open_model(${value.madondathang})" style="cursor:pointer">xem chi tiết</a></td>
-                            <td><button type="button" class="btn btn-success" disabled>đã giao ✔</button></td>
-                        </tr>
-                `
-                }
-            })
-            document.getElementById("table").innerHTML=element;
-        }
-
-        function giaohang(madonhang){
-            let thongtin={
-                madondathang:madonhang
-            }
-            axios.put("http://localhost:8080/api/dondathang",thongtin)
-            .then(res=>{
-                getDonHang();
-                showToast("xác nhận đơn thành công!",'success');
-            })
-            .catch(error=>{
-                showToast("xác nhận đơn thất bại!",'error');
-            })
-        }
+       
     </script>
 </body>
 
