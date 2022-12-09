@@ -113,6 +113,30 @@
                                             <th>Đơn giá</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>Cơm</td>
+                                            <td>1</td>
+                                            <td>5000đ</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>2</td>
+                                            <td>Rau</td>
+                                            <td>2</td>
+                                            <td>10000đ</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>3</td>
+                                            <td>Thịt gà</td>
+                                            <td>1</td>
+                                            <td>5000đ</td>
+                                        </tr>
+
+                                    </tbody>
                                 </table>
                             </div>
                             <div class="modal-footer">
@@ -202,8 +226,8 @@
                 element+=`
                         <tr class="content-order">
                             <td>${value.madondathang}</td>
-                            <td>${new Date(value.tgdat).getDate()+"/"+(new Date(value.tgdat).getMonth()+1)+"/"+new Date(value.tgdat).getFullYear()+" lúc "+new Date(value.tgdat).getHours() +"H"}</td>
-                            <td>${new Date(value.tgnhandukien).getDate()+"/"+(new Date(value.tgnhandukien).getMonth()+1)+"/"+new Date(value.tgnhandukien).getFullYear()+" lúc "+new Date(value.tgnhandukien).getHours() +"H"}</td>
+                            <td>${value.tgdat}</td>
+                            <td>${value.tgnhandukien}</td>
                             <td>${value.tongtien}</td>
                             <td>${value.tinhtrangdon}</td>
                             <td><a onclick="open_model(${value.madondathang})" style="cursor:pointer">xem chi tiết</a></td>
