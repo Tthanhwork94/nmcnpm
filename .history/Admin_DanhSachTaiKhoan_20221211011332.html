@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body onload="getTaikhoan()" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
     <!-- Header -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -64,17 +64,17 @@
                 <div class="col-12">
                     <h2>Danh sách tài khoản</h2>
                     <br>
-                    <!-- <form action="#" name="add-product">
+                    <form action="#" name="add-product">
                         <label class="labelNhap" for="mataikhoan">Mã tài khoản:</label>
                         <input class="inputNhap" type="text" name="mataikhoan" id="mataikhoan" placeholder="Nhập mã tài khoản" />
                         <button type="submit" id="khoataikhoan" class="btn-modal">Khoá</button> 
                         <button type="submit" id="kichhoattaikhoan" class="btn-modal">Kích hoạt</button>
-                    </form> -->
+                    </form>
                     <br>
-                    <button onclick="open_model()" type="submit" id="themtaikhoan" class="btn-modal">Thêm tài khoản nhân viên</button>
+                    <button type="submit" id="themtaikhoan" class="btn-modal">Thêm tài khoản nhân viên</button>
                     <br>
                     <br>
-                    <table id="table" class='table'>
+                    <table class='table'>
                         <tr>
                             <th>Mã tài khoản</th>
                             <th>Tên đăng nhập</th>
@@ -82,7 +82,55 @@
                             <th>Loại tài khoản</th>
                             <th>Trạng thái</th>
                         </tr>
-                        
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>abc123</td>
+                            <td>123456</td>
+                            <td>Admin</td>
+                            <td>Đã kích hoạt</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>abc123</td>
+                            <td>123456</td>
+                            <td>Nhân viên</td>
+                            <td>Đã kích hoạt</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>abc123</td>
+                            <td>123456</td>
+                            <td>Nhân viên</td>
+                            <td>Đã kích hoạt</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>abc123</td>
+                            <td>123456</td>
+                            <td>Khách hàng</td>
+                            <td>Đã kích hoạt</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>abc123</td>
+                            <td>123456</td>
+                            <td>Khách hàng</td>
+                            <td>Đã kích hoạt</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>abc123</td>
+                            <td>123456</td>
+                            <td>Khách hàng</td>
+                            <td>Đã kích hoạt</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>abc123</td>
+                            <td>123456</td>
+                            <td>Khách hàng</td>
+                            <td>Đã kích hoạt</td>
+                        </tr>
                     </table>
                     <!-- Thêm tài khoản -->
                     <!-- Modal -->
@@ -110,8 +158,8 @@
                                             placeholder="Nhập lại mật khẩu" />
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="close_model()" type="button" class="btn btn-secondary close-footer">Đóng</button>
-                                    <button onclick="DangKy()" type="button" class="btn btn-primary order">Thêm</button>
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="submit" class="btn btn-primary order">Thêm</button>
                                 </div>
                             </form>
                         </div>
@@ -171,112 +219,6 @@
     </div>
     <script>
         init();
-        async function getTaikhoan(){
-            // let makhachhang = JSON.parse(localStorage.getItem('account')).mataikhoan;
-            try {
-                let data = await axios.get("http://localhost:8080/api/taikhoan");
-                renderTaiKhoan(data.data);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-
-        function renderTaiKhoan(users){
-            let thead = `<tr>
-                            <th>Mã tài khoản</th>
-                            <th>Tên đăng nhập</th>
-                            <th>Loại tài khoản</th>
-                            <th>Trạng thái</th>
-                            <th></th>
-                        </tr>`
-            let element = ``;
-            users.filter(value =>{return value.loaitaikhoan!='admin'}).map( value => {
-                if(value.tinhtrang==="kích hoạt"){
-                    element+=`<tr class="table-row">
-                            <td>${value.mataikhoan}</td>
-                            <td>${value.tentaikhoan}</td>
-                            <td>${value.loaitaikhoan}</td>
-                            <td>${value.tinhtrang}</td>
-                            <td><button onclick="khoataikhoan(${value.mataikhoan})" type="button" class="btn btn-danger">Khóa</button></td>
-                        </tr>
-                `}
-                else{
-                    element+=`<tr class="table-row">
-                            <td>${value.mataikhoan}</td>
-                            <td>${value.tentaikhoan}</td>
-                            <td>${value.loaitaikhoan}</td>
-                            <td>${value.tinhtrang}</td>
-                            <td><button onclick="kichhoattaikhoan(${value.mataikhoan})" type="button" class="btn btn-primary">Kích hoạt</button></td>
-                        </tr>
-                    `
-                }
-            })
-            document.getElementById("table").innerHTML=thead+element;
-        }
-
-        function DangKy(){
-            let username= document.getElementById("tendangnhap");
-            let password=document.getElementById("matkhau");
-            let confirmpwd=document.getElementById("xacnhanmatkhau");
-            let account = {
-                tentaikhoan:username.value,
-                matkhau:password.value,
-                loaitaikhoan:"nhanvien"
-            }
-            axios.post("http://localhost:8080/api/register",account)
-            .then(function(res){
-                // window.localStorage.setItem('account', account);
-                showToast("đã thêm thành công!",'info');
-                close_model();
-                getTaikhoan();                
-            }).catch(function(error){
-                if(error.response.status===409){
-                    showToast("đã tồn tại!",'error');
-                }else{
-                    showToast("xảy ra lỗi!",'error');
-                }             
-            })
-    }
-
-    function open_model(){
-        document.getElementById("Model-themtaikhoan").style.display="block";
-    }
-
-    function close_model(){
-        document.getElementById("Model-themtaikhoan").style.display="none";
-    }
-
-    function kichhoattaikhoan(mataikhoan){
-
-            let thongtin={
-                mataikhoan:mataikhoan,
-                tinhtrang:"kích hoạt"
-            }
-            axios.put("http://localhost:8080/api/taikhoan/tinhtrang",thongtin)
-            .then((result) => {
-                getTaikhoan();
-                showToast("đã kích hoạt tài khoản",'info');
-            }).catch((err) => {
-                showToast("xảy ra lỗi",'error')
-            });
-        }
-
-        function khoataikhoan(mataikhoan){
-
-            let thongtin={
-                mataikhoan:mataikhoan,
-                tinhtrang:"khóa"
-            }
-            axios.put("http://localhost:8080/api/taikhoan/tinhtrang",thongtin)
-            .then((result) => {
-                getTaikhoan();
-                showToast("đã khóa tài khoản",'info');
-            }).catch((err) => {
-                showToast("xảy ra lỗi",'error')
-            });
-            }
-
-            
     </script>
 </body>
 

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title></title>
+    <title>Admin Order System HCMUS</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
@@ -11,12 +11,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <!-- <script src="validate.js" defer></script> -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- <script src="fix-password.js" defer></script>
+    <script src="manage-account.js" defer></script>
+    <script src="validate_input.js" defer></script> -->
     <script src="/function.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js" integrity="sha512-zlWWyZq71UMApAjih4WkaRpikgY9Bz1oXIW5G0fED4vk14JjGlQ1UmkGM392jEULP8jbNMiwLWdM8Z87Hu88Fw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css" integrity="sha512-8D+M+7Y6jVsEa7RD6Kv/Z7EImSpNpQllgaEIQAtqHcI0H6F4iZknRj0Nx1DCdB+TwBaS+702BGWYC0Ze2hpExQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -34,17 +37,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
+                <a class="navbar-brand" href="Admin_Home.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="NhanVien_Home.html">Trang chủ</a></li>
-                    <li><a href="NhanVien_XemHopDong.html">Xem hợp đồng</a></li>
-                    <li><a href="NhanVien_ThongKe.html">Thống kê</a></li>
+                    <li><a href="Admin_Home.html">Trang chủ</a></li>
+                    <li><a href="Admin_DanhSachTaiKhoan.html">Danh sách tài khoản</a></li>
                     <li class="dropdown">
                         <a href="#" id="account" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="NhanVien_ThongTin.html">Thông tin</a></li>
+                            <li><a href="Admin_ThongTin.html">Thông tin</a></li>
                             <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
                                     xuất</a></li>
                         </ul>
@@ -59,18 +61,61 @@
     <div class="center-content" class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-12 products">
-                        
-                    <h2>Thống kê thu nhập theo tháng</h2>
+                <div class="col-12">
+                    <h2>Danh sách tài khoản</h2>
                     <br>
-                    <form action="#" name="thongKeThang">
-                        <label for="doanhthuthang">Năm</label>
-                        <select name="yearpicker" id="yearpicker"></select>
-                        <button onclick="renderthongke()" type="submit" id="xemdoanhthuthang" class="btn-modal">Xem doanh thu</button>
-                    </form>
-                    <br> <br>
-                    <!-- hien thi ket qua doanh thu o day -->
-                    <canvas id="line-chart" width="800" height="450"></canvas>
+                    <!-- <form action="#" name="add-product">
+                        <label class="labelNhap" for="mataikhoan">Mã tài khoản:</label>
+                        <input class="inputNhap" type="text" name="mataikhoan" id="mataikhoan" placeholder="Nhập mã tài khoản" />
+                        <button type="submit" id="khoataikhoan" class="btn-modal">Khoá</button> 
+                        <button type="submit" id="kichhoattaikhoan" class="btn-modal">Kích hoạt</button>
+                    </form> -->
+                    <br>
+                    <button type="submit" id="themtaikhoan" class="btn-modal">Thêm tài khoản nhân viên</button>
+                    <br>
+                    <br>
+                    <table id="table" class='table'>
+                        <tr>
+                            <th>Mã tài khoản</th>
+                            <th>Tên đăng nhập</th>
+                            <th>Mật khẩu</th>
+                            <th>Loại tài khoản</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                        
+                    </table>
+                    <!-- Thêm tài khoản -->
+                    <!-- Modal -->
+                    <div id="Model-themtaikhoan" class="modal">
+                        <div class="modal-content">
+                            <form class="inputModal" name="add-account" action="#">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Thêm tài khoản nhân viên</h2>
+                                    <span class="close">&times;</span>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="tendangnhap">Tên đăng nhập:</label>
+                                        <br>
+                                        <input type="text" name="tendangnhap" id="tendangnhap"
+                                            placeholder="Nhập tên đăng nhập" />
+                                        <br>
+                                        <label for="matkhau">Mật khẩu:</label>
+                                        <br>
+                                        <input type="password" name="matkhau" id="matkhau"
+                                            placeholder="Nhập mật khẩu" />
+                                        <br>
+                                        <label for="xacnhanmatkhau">Xác nhận mật khẩu:</label>
+                                        <br>
+                                        <input type="password" name="xacnhanmatkhau" id="xacnhanmatkhau"
+                                            placeholder="Nhập lại mật khẩu" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="submit" class="btn btn-primary order">Thêm</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -126,87 +171,7 @@
     </div>
     <script>
         init();
-
-       
-        function renderthongke(){
-            let year = document.getElementById("yearpicker").value;
-
-            axios.get("http://localhost:8080/api/nhanvien/thongke/"+year)
-            .then((result) => {
-                var doanhthu = result.data[0];
-                var soluong=result.data[1];
-                thongke(doanhthu,soluong,"năm "+year)
-            }).catch((err) => {
-                alert("xảy ra lỗi");
-            });
-        }
-        function thongke(doanhthu,soluong,year){  
-            new Chart(document.getElementById("line-chart"), {
-            type: 'line',
-            data: {
-                labels: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October" ,"November", "December" ],
-                datasets: [ { 
-                    data: doanhthu,
-                    label: "Doanh thu",
-                    borderColor: "#ff6384",
-                    fill: false
-                },
-                { 
-                    data: soluong,
-                    label: "Số lượng",
-                    borderColor: "#47c2cb",
-                    fill: false
-                },
-                ]
-            },
-            options: {
-                title: {
-                display: true,
-                text: year
-                }
-            }
-            });        
-        }
-
-
-        
-        new Chart(document.getElementById("line-chart"), {
-            type: 'line',
-            data: {
-                labels: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October" ,"November", "December" ],
-                datasets: [ { 
-                    data: [0,0,0,0,0,0,0,0,0,0,0,0],
-                    label: "Doanh thu",
-                    borderColor: "#ff6384",
-                    fill: false
-                },
-                { 
-                    data: [0,0,0,0,0,0,0,0,0,0,0,0],
-                    label: "Số lượng",
-                    borderColor: "#47c2cb",
-                    fill: false
-                },
-                ]
-            },
-            options: {
-                title: {
-                display: true,
-                text: "năm"
-                }
-            }
-            });
-        </script>
-        
-
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script type="text/javascript">
-        let startYear = 1800;
-        let endYear = new Date().getFullYear();
-        for (i = endYear; i > startYear; i--)
-        {
-        $('#yearpicker').append($('<option />').val(i).html(i));
-        }
-        </script>
+    </script>
 </body>
 
 </html>

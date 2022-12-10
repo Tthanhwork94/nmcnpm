@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button onclick="closeinf()" type="button" class="btn btn-secondary close-footer">Đóng</button>
-                                    <button onclick="updateinfor()" type="button" id="luuInf" class="btn btn-primary order">Lưu thay
+                                    <button type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
                                         đổi</button>
                                 </div>
                             </form>
@@ -290,7 +290,7 @@
             var diachi =document.getElementById("diachi");
             hoten.value=data.hoten;
             email.value=data.email;
-            diachi.value=data.diaChi;
+            diachi.value=data.diachi;
             document.getElementById("Model-fix-inf").style.display = "block";   
         } 
         function closeinf(){

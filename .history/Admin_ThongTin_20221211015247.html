@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body onload="getThongtin()" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
     <!-- Header -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -108,8 +108,8 @@
                                     <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="closeinf()" type="button" class="btn btn-secondary close-footer">Đóng</button>
-                                    <button onclick="updateinfor()" type="button" id="luuInf" class="btn btn-primary order">Lưu thay
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
                                         đổi</button>
                                 </div>
                             </form>
@@ -145,8 +145,8 @@
                                     <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="closemdlchangepwd()" type="button" class="btn btn-secondary close-footer2">Đóng</button>
-                                    <button onclick="doiMatKhau()" type="button" class="btn btn-primary order2">Lưu thay đổi</button>
+                                    <button type="button" class="btn btn-secondary close-footer2">Đóng</button>
+                                    <button type="submit" class="btn btn-primary order2">Lưu thay đổi</button>
                                 </div>
                             </form>
                         </div>
@@ -210,7 +210,7 @@
         async function getThongtin(){
             let mataikhoan = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
             try {
-                let data = await axios.get("http://localhost:8080/api/admin/"+mataikhoan);
+                let data = await axios.get("http://localhost:8080/api/khachhang/"+mataikhoan);
                 rows = data.data;
                 renderThongtin(rows);
             } catch (error) {
@@ -226,9 +226,9 @@
                         </tr>`
             let element = ``;
             element+=`<tr class="table-row">
-                            <td>${data.maadmin}</td>
+                            <td>${data.makhachhang}</td>
                             <td>${data.hoten}</td>
-                            <td>${data.diaChi}</td>
+                            <td>${data.diachi}</td>
                             <td>${data.email}</td>
                         </tr>
                     `
@@ -277,7 +277,7 @@
         async function getThongtintoModel(){
             let madoitac = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
             try {
-                let data = await axios.get("http://localhost:8080/api/admin/"+madoitac);
+                let data = await axios.get("http://localhost:8080/api/khachhang/"+madoitac);
                 rows = data.data;
                 showModelupdateInfor(rows);
             } catch (error) {
@@ -290,7 +290,7 @@
             var diachi =document.getElementById("diachi");
             hoten.value=data.hoten;
             email.value=data.email;
-            diachi.value=data.diaChi;
+            diachi.value=data.diachi;
             document.getElementById("Model-fix-inf").style.display = "block";   
         } 
         function closeinf(){
@@ -309,7 +309,7 @@
                 hoten:hoten.value
             }
             // console.log(thongtin);
-            axios.put("http://localhost:8080/api/admin",thongtin)
+            axios.put("http://localhost:8080/api/khachhang",thongtin)
             .then(function(response){
                 getThongtin();
                 showToast("đổi thông tin thành công!",'success');

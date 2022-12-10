@@ -209,7 +209,7 @@
                                 <td>${value.tongtien}</td>
                                 <td>chưa thanh toán</td>
                                 <td><a onclick="open_model(${value.madondathang})" style="cursor:pointer">xem chi tiết</a></td>
-                                <td><button onclick="giaohang(${value.madondathang})" type="button" class="btn btn-primary">Thanh Toán</button></td>
+                                <td><button type="button" class="btn btn-primary">Thanh Toán</button></td>
                             </tr>
                     `
                 }else if(value.tinhtrangdon==='chưa giao'){
@@ -279,21 +279,6 @@
 
         function close_model(){
             document.getElementById("exampleModal").style.display="none";
-        }
-
-
-        function giaohang(madonhang){
-            let thongtin={
-                madondathang:madonhang
-            }
-            axios.put("http://localhost:8080/api/dondathang/thanhtoan",thongtin)
-            .then(res=>{
-                getDonHang();
-                showToast("thanh toán thành công!",'success');
-            })
-            .catch(error=>{
-                showToast("thanh toán thất bại!",'error');
-            })
         }
     </script>
 </body>

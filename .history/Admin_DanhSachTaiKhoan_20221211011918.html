@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body onload="getTaikhoan()" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
     <!-- Header -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -71,7 +71,7 @@
                         <button type="submit" id="kichhoattaikhoan" class="btn-modal">Kích hoạt</button>
                     </form> -->
                     <br>
-                    <button onclick="open_model()" type="submit" id="themtaikhoan" class="btn-modal">Thêm tài khoản nhân viên</button>
+                    <button type="submit" id="themtaikhoan" class="btn-modal">Thêm tài khoản nhân viên</button>
                     <br>
                     <br>
                     <table id="table" class='table'>
@@ -110,8 +110,8 @@
                                             placeholder="Nhập lại mật khẩu" />
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="close_model()" type="button" class="btn btn-secondary close-footer">Đóng</button>
-                                    <button onclick="DangKy()" type="button" class="btn btn-primary order">Thêm</button>
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="submit" class="btn btn-primary order">Thêm</button>
                                 </div>
                             </form>
                         </div>
@@ -171,11 +171,13 @@
     </div>
     <script>
         init();
+        let rows = [];
         async function getTaikhoan(){
             // let makhachhang = JSON.parse(localStorage.getItem('account')).mataikhoan;
             try {
                 let data = await axios.get("http://localhost:8080/api/taikhoan");
-                renderTaiKhoan(data.data);
+                rows = data.data;
+                renderTaiKhoan(rows);
             } catch (error) {
                 console.log(error);
             }
@@ -191,92 +193,28 @@
                         </tr>`
             let element = ``;
             users.filter(value =>{return value.loaitaikhoan!='admin'}).map( value => {
-                if(value.tinhtrang==="kích hoạt"){
+                if(value.trangthai==="đã kích hoạt"){
                     element+=`<tr class="table-row">
                             <td>${value.mataikhoan}</td>
                             <td>${value.tentaikhoan}</td>
                             <td>${value.loaitaikhoan}</td>
-                            <td>${value.tinhtrang}</td>
-                            <td><button onclick="khoataikhoan(${value.mataikhoan})" type="button" class="btn btn-danger">Khóa</button></td>
+                            <td>${value.trangthai}</td>
+                            <td><button onclick="khoataikhoan(${value.mataikhoan})"  type="text" id="huy" class="btn-modal">khóa</button></td>
                         </tr>
                 `}
                 else{
                     element+=`<tr class="table-row">
                             <td>${value.mataikhoan}</td>
-                            <td>${value.tentaikhoan}</td>
+                            <td>${value.tendangnhap}</td>
                             <td>${value.loaitaikhoan}</td>
-                            <td>${value.tinhtrang}</td>
-                            <td><button onclick="kichhoattaikhoan(${value.mataikhoan})" type="button" class="btn btn-primary">Kích hoạt</button></td>
+                            <td>${value.trangthai}</td>
+                            <td><button onclick="kichhoattaikhoan(${value.mataikhoan})" type="text" id="huy" class="btn-modal">kích hoạt</button></td>
                         </tr>
                     `
                 }
             })
             document.getElementById("table").innerHTML=thead+element;
         }
-
-        function DangKy(){
-            let username= document.getElementById("tendangnhap");
-            let password=document.getElementById("matkhau");
-            let confirmpwd=document.getElementById("xacnhanmatkhau");
-            let account = {
-                tentaikhoan:username.value,
-                matkhau:password.value,
-                loaitaikhoan:"nhanvien"
-            }
-            axios.post("http://localhost:8080/api/register",account)
-            .then(function(res){
-                // window.localStorage.setItem('account', account);
-                showToast("đã thêm thành công!",'info');
-                close_model();
-                getTaikhoan();                
-            }).catch(function(error){
-                if(error.response.status===409){
-                    showToast("đã tồn tại!",'error');
-                }else{
-                    showToast("xảy ra lỗi!",'error');
-                }             
-            })
-    }
-
-    function open_model(){
-        document.getElementById("Model-themtaikhoan").style.display="block";
-    }
-
-    function close_model(){
-        document.getElementById("Model-themtaikhoan").style.display="none";
-    }
-
-    function kichhoattaikhoan(mataikhoan){
-
-            let thongtin={
-                mataikhoan:mataikhoan,
-                tinhtrang:"kích hoạt"
-            }
-            axios.put("http://localhost:8080/api/taikhoan/tinhtrang",thongtin)
-            .then((result) => {
-                getTaikhoan();
-                showToast("đã kích hoạt tài khoản",'info');
-            }).catch((err) => {
-                showToast("xảy ra lỗi",'error')
-            });
-        }
-
-        function khoataikhoan(mataikhoan){
-
-            let thongtin={
-                mataikhoan:mataikhoan,
-                tinhtrang:"khóa"
-            }
-            axios.put("http://localhost:8080/api/taikhoan/tinhtrang",thongtin)
-            .then((result) => {
-                getTaikhoan();
-                showToast("đã khóa tài khoản",'info');
-            }).catch((err) => {
-                showToast("xảy ra lỗi",'error')
-            });
-            }
-
-            
     </script>
 </body>
 

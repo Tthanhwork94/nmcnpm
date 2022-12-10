@@ -200,43 +200,18 @@
                             </tr>
                         </thead>`
             data.map(value=>{
-                if(value.tinhtrangdon===null){
-                    element+=`
-                            <tr class="content-order">
-                                <td>${value.madondathang}</td>
-                                <td>${new Date(value.tgdat).getDate()+"/"+(new Date(value.tgdat).getMonth()+1)+"/"+new Date(value.tgdat).getFullYear()+" lúc "+new Date(value.tgdat).getHours() +"H"}</td>
-                                <td>${new Date(value.tgnhandukien).getDate()+"/"+(new Date(value.tgnhandukien).getMonth()+1)+"/"+new Date(value.tgnhandukien).getFullYear()+" lúc "+new Date(value.tgnhandukien).getHours() +"H"}</td>
-                                <td>${value.tongtien}</td>
-                                <td>chưa thanh toán</td>
-                                <td><a onclick="open_model(${value.madondathang})" style="cursor:pointer">xem chi tiết</a></td>
-                                <td><button onclick="giaohang(${value.madondathang})" type="button" class="btn btn-primary">Thanh Toán</button></td>
-                            </tr>
-                    `
-                }else if(value.tinhtrangdon==='chưa giao'){
-                    element+=`
-                            <tr class="content-order">
-                                <td>${value.madondathang}</td>
-                                <td>${new Date(value.tgdat).getDate()+"/"+(new Date(value.tgdat).getMonth()+1)+"/"+new Date(value.tgdat).getFullYear()+" lúc "+new Date(value.tgdat).getHours() +"H"}</td>
-                                <td>${new Date(value.tgnhandukien).getDate()+"/"+(new Date(value.tgnhandukien).getMonth()+1)+"/"+new Date(value.tgnhandukien).getFullYear()+" lúc "+new Date(value.tgnhandukien).getHours() +"H"}</td>
-                                <td>${value.tongtien}</td>
-                                <td>chưa thanh toán</td>
-                                <td><a onclick="open_model(${value.madondathang})" style="cursor:pointer">xem chi tiết</a></td>
-                                <td><button type="button" class="btn btn-warning" disabled>đã thanh toán</button></td>
-                            </tr>
-                    `
-                }else{
-                    element+=`
-                            <tr class="content-order">
-                                <td>${value.madondathang}</td>
-                                <td>${new Date(value.tgdat).getDate()+"/"+(new Date(value.tgdat).getMonth()+1)+"/"+new Date(value.tgdat).getFullYear()+" lúc "+new Date(value.tgdat).getHours() +"H"}</td>
-                                <td>${new Date(value.tgnhandukien).getDate()+"/"+(new Date(value.tgnhandukien).getMonth()+1)+"/"+new Date(value.tgnhandukien).getFullYear()+" lúc "+new Date(value.tgnhandukien).getHours() +"H"}</td>
-                                <td>${value.tongtien}</td>
-                                <td>${value.tinhtrangdon}</td>
-                                <td><a onclick="open_model(${value.madondathang})" style="cursor:pointer">xem chi tiết</a></td>
-                                <td><button type="button" class="btn btn-success" disabled>giao thành công</button></td>
-                            </tr>
-                    `
-                }
+                if(value.tinhtrangdon==='')
+                element+=`
+                        <tr class="content-order">
+                            <td>${value.madondathang}</td>
+                            <td>${new Date(value.tgdat).getDate()+"/"+(new Date(value.tgdat).getMonth()+1)+"/"+new Date(value.tgdat).getFullYear()+" lúc "+new Date(value.tgdat).getHours() +"H"}</td>
+                            <td>${new Date(value.tgnhandukien).getDate()+"/"+(new Date(value.tgnhandukien).getMonth()+1)+"/"+new Date(value.tgnhandukien).getFullYear()+" lúc "+new Date(value.tgnhandukien).getHours() +"H"}</td>
+                            <td>${value.tongtien}</td>
+                            <td>${value.tinhtrangdon}</td>
+                            <td><a onclick="open_model(${value.madondathang})" style="cursor:pointer">xem chi tiết</a></td>
+                            <td><button type="button" class="btn btn-primary">Thanh Toán</button></td>
+                        </tr>
+                `
             })
             document.getElementById("table").innerHTML=element;
         }
@@ -279,21 +254,6 @@
 
         function close_model(){
             document.getElementById("exampleModal").style.display="none";
-        }
-
-
-        function giaohang(madonhang){
-            let thongtin={
-                madondathang:madonhang
-            }
-            axios.put("http://localhost:8080/api/dondathang/thanhtoan",thongtin)
-            .then(res=>{
-                getDonHang();
-                showToast("thanh toán thành công!",'success');
-            })
-            .catch(error=>{
-                showToast("thanh toán thất bại!",'error');
-            })
         }
     </script>
 </body>

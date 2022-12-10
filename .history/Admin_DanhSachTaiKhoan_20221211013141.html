@@ -197,7 +197,7 @@
                             <td>${value.tentaikhoan}</td>
                             <td>${value.loaitaikhoan}</td>
                             <td>${value.tinhtrang}</td>
-                            <td><button onclick="khoataikhoan(${value.mataikhoan})" type="button" class="btn btn-danger">Khóa</button></td>
+                            <td><button type="button" class="btn btn-danger">Khóa</button></td>
                         </tr>
                 `}
                 else{
@@ -206,7 +206,7 @@
                             <td>${value.tentaikhoan}</td>
                             <td>${value.loaitaikhoan}</td>
                             <td>${value.tinhtrang}</td>
-                            <td><button onclick="kichhoattaikhoan(${value.mataikhoan})" type="button" class="btn btn-primary">Kích hoạt</button></td>
+                            <td><button type="button" class="btn btn-primary">Kích hoạt</button></td>
                         </tr>
                     `
                 }
@@ -245,38 +245,6 @@
     function close_model(){
         document.getElementById("Model-themtaikhoan").style.display="none";
     }
-
-    function kichhoattaikhoan(mataikhoan){
-
-            let thongtin={
-                mataikhoan:mataikhoan,
-                tinhtrang:"kích hoạt"
-            }
-            axios.put("http://localhost:8080/api/taikhoan/tinhtrang",thongtin)
-            .then((result) => {
-                getTaikhoan();
-                showToast("đã kích hoạt tài khoản",'info');
-            }).catch((err) => {
-                showToast("xảy ra lỗi",'error')
-            });
-        }
-
-        function khoataikhoan(mataikhoan){
-
-            let thongtin={
-                mataikhoan:mataikhoan,
-                tinhtrang:"khóa"
-            }
-            axios.put("http://localhost:8080/api/taikhoan/tinhtrang",thongtin)
-            .then((result) => {
-                getTaikhoan();
-                showToast("đã khóa tài khoản",'info');
-            }).catch((err) => {
-                showToast("xảy ra lỗi",'error')
-            });
-            }
-
-            
     </script>
 </body>
 

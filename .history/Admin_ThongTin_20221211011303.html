@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body onload="getThongtin()" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
     <!-- Header -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -64,7 +64,7 @@
             <div class="row">
                 <div class="col-12">
                     <h2>Thông tin Admin</h2>
-                    <table id="table" class='table'>
+                    <table class='table'>
                         <tr>
                             <th>Mã nhân viên</th>
                             <th>Họ tên</th>
@@ -108,8 +108,8 @@
                                     <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="closeinf()" type="button" class="btn btn-secondary close-footer">Đóng</button>
-                                    <button onclick="updateinfor()" type="button" id="luuInf" class="btn btn-primary order">Lưu thay
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
                                         đổi</button>
                                 </div>
                             </form>
@@ -145,8 +145,8 @@
                                     <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="closemdlchangepwd()" type="button" class="btn btn-secondary close-footer2">Đóng</button>
-                                    <button onclick="doiMatKhau()" type="button" class="btn btn-primary order2">Lưu thay đổi</button>
+                                    <button type="button" class="btn btn-secondary close-footer2">Đóng</button>
+                                    <button type="submit" class="btn btn-primary order2">Lưu thay đổi</button>
                                 </div>
                             </form>
                         </div>
@@ -205,122 +205,7 @@
         </div>
     </div>
     <script>
-        
         init();
-        async function getThongtin(){
-            let mataikhoan = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
-            try {
-                let data = await axios.get("http://localhost:8080/api/admin/"+mataikhoan);
-                rows = data.data;
-                renderThongtin(rows);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        function renderThongtin(data){
-            let thead = `<tr>
-                            <th>Mã khách hàng</th>
-                            <th>Tên khách hàng</th>
-                            <th>Địa chỉ</th>
-                            <th>Email</th>
-                        </tr>`
-            let element = ``;
-            element+=`<tr class="table-row">
-                            <td>${data.maadmin}</td>
-                            <td>${data.hoten}</td>
-                            <td>${data.diaChi}</td>
-                            <td>${data.email}</td>
-                        </tr>
-                    `
-
-            document.getElementById("table").innerHTML=thead+element;
-        }
-
-        var btn = document.getElementById("fix-password");
-        btn.onclick  = function () {
-            document.getElementById("Model-fix-password").style.display = "block";
-            
-        }   
-        function closemdlchangepwd(){
-            document.getElementById("Model-fix-password").style.display = "none";
-        }
-    
-        function doiMatKhau(){
-            let thongtinmatkhau;
-            let mataikhoan = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
-            let matkhaucu = document.getElementById("matkhau").value;
-            let matkhaumoi=document.getElementById("matkhaumoi").value;
-            thongtinmatkhau={
-                mataikhoan:mataikhoan,
-                matkhaucu:matkhaucu,
-                matkhaumoi:matkhaumoi
-            }
-            axios.put("http://localhost:8080/api/taikhoan",thongtinmatkhau)
-            .then(function(response){
-                if(response.data!=-1){
-                    showToast("đổi mật khẩu thành công!",'success');
-                    closemdlchangepwd();
-                }else{
-                    showToast("đổi mật khẩu thất bại!",'error');
-                    closemdlchangepwd()
-                }
-            })
-            .catch(function(error){
-                showToast("đổi mật khẩu thất bại!",'error');
-                closemdlchangepwd();
-            })
-        }
-        var btn2 = document.getElementById("fix-inf");
-        btn2.onclick  = getThongtintoModel;
-
-
-        async function getThongtintoModel(){
-            let madoitac = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
-            try {
-                let data = await axios.get("http://localhost:8080/api/admin/"+madoitac);
-                rows = data.data;
-                showModelupdateInfor(rows);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        function showModelupdateInfor (data) {
-            var hoten =document.getElementById("hoten");
-            var email =document.getElementById("email");
-            var diachi =document.getElementById("diachi");
-            hoten.value=data.hoten;
-            email.value=data.email;
-            diachi.value=data.diaChi;
-            document.getElementById("Model-fix-inf").style.display = "block";   
-        } 
-        function closeinf(){
-            document.getElementById("Model-fix-inf").style.display = "none";  
-        }
-
-        function updateinfor(){
-            let maacc = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
-            var hoten =document.getElementById("hoten");
-            var email =document.getElementById("email");
-            var diachi =document.getElementById("diachi");
-            let thongtin={
-                maacc:maacc,
-                email:email.value,
-                diachi:diachi.value,
-                hoten:hoten.value
-            }
-            // console.log(thongtin);
-            axios.put("http://localhost:8080/api/admin",thongtin)
-            .then(function(response){
-                getThongtin();
-                showToast("đổi thông tin thành công!",'success');
-                closeinf()
-            })
-            .catch(function(error){
-                showToast("đổi thông tin thất bại!",'error');
-                closeinf()
-            });
-
-        }
     </script>
 </body>
 

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Admin Order System HCMUS</title>
+    <title>Order System HCMUS</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
@@ -11,12 +11,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <!-- <script src="fix-inf.js" defer></script>
     <script src="fix-password.js" defer></script>
     <script src="validate_input.js" defer></script> -->
-
     <script src="/function.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
@@ -38,16 +37,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="Admin_Home.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
+                <a class="navbar-brand" href="KhachHang_Home.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="Admin_Home.html">Trang chủ</a></li>
-                    <li><a href="Admin_DanhSachTaiKhoan.html">Danh sách tài khoản</a></li>
+                    <li><a href="KhachHang_Home.html">Trang chủ</a></li>
+                    <li><a href="KhachHang_DatMon.html">Đặt món</a></li>
+                    <li><a href="KhachHang_DonHangCuaToi.html">Đơn hàng của tôi</a></li>
                     <li class="dropdown">
                         <a href="#" id="account" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="Admin_ThongTin.html">Thông tin</a></li>
+                            <li><a href="KhachHang_ThongTin.html">Thông tin</a></li>
                             <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
                                     xuất</a></li>
                         </ul>
@@ -56,17 +56,17 @@
             </div>
             <div class="clearfix"></div>
         </div>
+        
     </nav>
-
     <!-- Center-->
     <div class="center-content" class="container-fluid">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h2>Thông tin Admin</h2>
+                    <h2>Thông tin khách hàng</h2>
                     <table id="table" class='table'>
                         <tr>
-                            <th>Mã nhân viên</th>
+                            <th>Mã khách hàng</th>
                             <th>Họ tên</th>
                             <th>Địa chỉ</th>
                             <th>Email</th>
@@ -109,15 +109,13 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button onclick="closeinf()" type="button" class="btn btn-secondary close-footer">Đóng</button>
-                                    <button onclick="updateinfor()" type="button" id="luuInf" class="btn btn-primary order">Lưu thay
+                                    <button onclick="updateinfor()"  type="button" id="luuInf" class="btn btn-primary order">Lưu thay
                                         đổi</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                     <!-- Đổi mật khẩu -->
-                    <!-- Modal -->
-                    <!-- Button trigger modal -->
                     <button id="fix-password" class="btn-modal">Đổi mật khẩu</button>
                     <!-- Modal -->
                     <div id="Model-fix-password" class="modal">
@@ -151,12 +149,13 @@
                             </form>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
     </div>
     <!-- Footer -->
-    <div class="footer">
+    <div class="footer navbar">
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
@@ -205,12 +204,11 @@
         </div>
     </div>
     <script>
-        
         init();
         async function getThongtin(){
             let mataikhoan = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
             try {
-                let data = await axios.get("http://localhost:8080/api/admin/"+mataikhoan);
+                let data = await axios.get("http://localhost:8080/api/khachhang/"+mataikhoan);
                 rows = data.data;
                 renderThongtin(rows);
             } catch (error) {
@@ -226,9 +224,9 @@
                         </tr>`
             let element = ``;
             element+=`<tr class="table-row">
-                            <td>${data.maadmin}</td>
+                            <td>${data.makhachhang}</td>
                             <td>${data.hoten}</td>
-                            <td>${data.diaChi}</td>
+                            <td>${data.diachi}</td>
                             <td>${data.email}</td>
                         </tr>
                     `
@@ -277,7 +275,7 @@
         async function getThongtintoModel(){
             let madoitac = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
             try {
-                let data = await axios.get("http://localhost:8080/api/admin/"+madoitac);
+                let data = await axios.get("http://localhost:8080/api/khachhang/"+madoitac);
                 rows = data.data;
                 showModelupdateInfor(rows);
             } catch (error) {
@@ -290,7 +288,7 @@
             var diachi =document.getElementById("diachi");
             hoten.value=data.hoten;
             email.value=data.email;
-            diachi.value=data.diaChi;
+            diachi.value=data.diachi;
             document.getElementById("Model-fix-inf").style.display = "block";   
         } 
         function closeinf(){
@@ -309,7 +307,7 @@
                 hoten:hoten.value
             }
             // console.log(thongtin);
-            axios.put("http://localhost:8080/api/admin",thongtin)
+            axios.put("http://localhost:8080/api/khachhang",thongtin)
             .then(function(response){
                 getThongtin();
                 showToast("đổi thông tin thành công!",'success');

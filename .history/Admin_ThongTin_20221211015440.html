@@ -108,8 +108,8 @@
                                     <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="closeinf()" type="button" class="btn btn-secondary close-footer">Đóng</button>
-                                    <button onclick="updateinfor()" type="button" id="luuInf" class="btn btn-primary order">Lưu thay
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
                                         đổi</button>
                                 </div>
                             </form>
@@ -145,8 +145,8 @@
                                     <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="closemdlchangepwd()" type="button" class="btn btn-secondary close-footer2">Đóng</button>
-                                    <button onclick="doiMatKhau()" type="button" class="btn btn-primary order2">Lưu thay đổi</button>
+                                    <button type="button" class="btn btn-secondary close-footer2">Đóng</button>
+                                    <button type="submit" class="btn btn-primary order2">Lưu thay đổi</button>
                                 </div>
                             </form>
                         </div>
@@ -226,7 +226,7 @@
                         </tr>`
             let element = ``;
             element+=`<tr class="table-row">
-                            <td>${data.maadmin}</td>
+                            <td>${data.makhachhang}</td>
                             <td>${data.hoten}</td>
                             <td>${data.diaChi}</td>
                             <td>${data.email}</td>
@@ -290,7 +290,7 @@
             var diachi =document.getElementById("diachi");
             hoten.value=data.hoten;
             email.value=data.email;
-            diachi.value=data.diaChi;
+            diachi.value=data.diachi;
             document.getElementById("Model-fix-inf").style.display = "block";   
         } 
         function closeinf(){
