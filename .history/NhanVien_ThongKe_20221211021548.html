@@ -34,20 +34,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="NhanVien_Home.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
+                <a class="navbar-brand" href="index.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="NhanVien_Home.html">Trang chủ</a></li>
-                    <li><a href="NhanVien_QuanLyDonHang.html">Quản lý đơn hàng</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sản phẩm<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="NhanVien_ThemSanPham.html">Thêm sản phẩm</a></li>
-                            <li><a href="NhanVien_DanhMucSanPham.html">Danh mục sản phẩm</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="NhanVien_NhapKho.html">Nhập kho</a></li>
+                    <li><a href="NhanVien_XemHopDong.html">Xem hợp đồng</a></li>
                     <li><a href="NhanVien_ThongKe.html">Thống kê</a></li>
                     <li class="dropdown">
                         <a href="#" id="account" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
@@ -62,7 +54,6 @@
             <div class="clearfix"></div>
         </div>
     </nav>
-
 
     <!-- Center-->
     <div class="center-content" class="container-fluid">
@@ -148,7 +139,7 @@
                 alert("xảy ra lỗi");
             });
         }
-        function thongke(doanhthu,year){  
+        function thongke(doanhthu,soluong,year){  
             new Chart(document.getElementById("line-chart"), {
             type: 'line',
             data: {
