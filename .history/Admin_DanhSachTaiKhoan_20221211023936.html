@@ -174,7 +174,7 @@
         async function getTaikhoan(){
             // let makhachhang = JSON.parse(localStorage.getItem('account')).mataikhoan;
             try {
-                let data = await axios.get(localhost+"/api/taikhoan");
+                let data = await axios.get(localhost+"api/taikhoan");
                 renderTaiKhoan(data.data);
             } catch (error) {
                 console.log(error);
@@ -252,7 +252,7 @@
                 mataikhoan:mataikhoan,
                 tinhtrang:"kích hoạt"
             }
-            axios.put(localhost+"/api/taikhoan/tinhtrang",thongtin)
+            axios.put("http://localhost:8080/api/taikhoan/tinhtrang",thongtin)
             .then((result) => {
                 getTaikhoan();
                 showToast("đã kích hoạt tài khoản",'info');
@@ -267,7 +267,7 @@
                 mataikhoan:mataikhoan,
                 tinhtrang:"khóa"
             }
-            axios.put(localhost+"/api/taikhoan/tinhtrang",thongtin)
+            axios.put("http://localhost:8080/api/taikhoan/tinhtrang",thongtin)
             .then((result) => {
                 getTaikhoan();
                 showToast("đã khóa tài khoản",'info');

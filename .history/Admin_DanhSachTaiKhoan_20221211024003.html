@@ -174,7 +174,7 @@
         async function getTaikhoan(){
             // let makhachhang = JSON.parse(localStorage.getItem('account')).mataikhoan;
             try {
-                let data = await axios.get(localhost+"/api/taikhoan");
+                let data = await axios.get(localhost+"api/taikhoan");
                 renderTaiKhoan(data.data);
             } catch (error) {
                 console.log(error);

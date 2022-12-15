@@ -1,6 +1,5 @@
-var localhost = "http://localhost:8080";
 function setLocalAccount(tentaikhoan){
-    axios.get(localhost+"/api/taikhoan/"+tentaikhoan)
+    axios.get("http://localhost:8080/api/taikhoan/"+tentaikhoan)
     .then(function(res){
         let taikhoan = res.data;
         localStorage.setItem("account",JSON.stringify(taikhoan));
@@ -23,6 +22,7 @@ function logout(){
     //    }, 100);
 };
 
+var = ""
 
 function showToast(message,icon){
     $.toast({

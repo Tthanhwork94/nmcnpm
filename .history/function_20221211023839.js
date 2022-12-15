@@ -1,6 +1,6 @@
-var localhost = "http://localhost:8080";
+var localhost = "https://7b95-116-108-82-100.ap.ngrok.io";
 function setLocalAccount(tentaikhoan){
-    axios.get(localhost+"/api/taikhoan/"+tentaikhoan)
+    axios.get("http://localhost:8080/api/taikhoan/"+tentaikhoan)
     .then(function(res){
         let taikhoan = res.data;
         localStorage.setItem("account",JSON.stringify(taikhoan));
