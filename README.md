@@ -3,7 +3,7 @@
 
 # CHUẨN BỊ
 
-### CÀI ĐẶT JDK
+### CÀI ĐẶT JDK (nếu chưa có)
 Step 1: Truy cập trang chủ oracle
 [tại đây](https://www.oracle.com/java/technologies/downloads/#jdk17-windows)
 
@@ -21,7 +21,7 @@ step 4: kiểm tra version. run lệnh sau ở command line để kiểm tra ver
 
 [Video hướng dẫn cài đặt JDK 17](https://www.youtube.com/watch?v=fFbdHAD4ekg)
 
-### CÀI ĐẶT APACHE TOMCAT
+### CÀI ĐẶT APACHE TOMCAT (nếu chưa có)
 
 step 1: tài file cài đặt tomcat 9 [tại đây](https://tomcat.apache.org/download-90.cgi). chọn mục sau đây.
 
@@ -60,7 +60,15 @@ truy cập [http://localhost:8080](http://localhost:8080) để kiểm tra serve
 [video hướng dẫn](https://www.youtube.com/watch?v=hz-Pb1MgRBU)
 
 
+# clone repo
+
+> clone repo frontend [tại đây](https://github.com/Tthanhwork94/nmcnpm)  => branch master
+>
+> clone repo backend [tại đây](https://github.com/Tthanhwork94/quanlyCanTeen) => branch master
+>
+
 # cài đặt database
+
 
 run lần lượt các file.sql sau
 
@@ -97,10 +105,13 @@ spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.SQLServer2012Dia
  
 # cài đặt chương trình
 
-> clone repo frontend [tại đây](https://github.com/Tthanhwork94/nmcnpm)
->
-> clone repo backend [tại đây](https://github.com/Tthanhwork94/quanlyCanTeen)
->
+install mvn
+
+> nếu trong folder QuanLyCanTeen\target có 2 file .jar thì hãy xóa đi
+
+> run lệnh sau ở folder QuanLyCanTeen để generate file .jar 
+
+    mvn install
 
 truy cập vào đường dẫn trong folder QuanLyCanTeen\target
 
@@ -108,9 +119,12 @@ truy cập vào đường dẫn trong folder QuanLyCanTeen\target
 
     java -jar QuanLyCanTeen-0.0.1-SNAPSHOT.jar
 
-tomcat sẽ run trên port:8080
+nếu báo lỗi port 8080 in use thì hãy tắt tomcat server trong service
 
 nếu port 8080 đã dùng ở ứng dụng khác thì ta có thể đổi port trong file **application.properties** và điều chỉnh port của biến localhost lại trong repo frontend trong file **function.js**
+
+
+Lỗi port 1433: cách fix [tại đây](https://kienthuclaptrinh.vn/2012/07/24/7-buoc-de-mo-port-1433-cho-ms-sql-server/) 
 
 
 ## mở chrome để chạy chương trình không bị lỗi chặn cors
@@ -121,4 +135,4 @@ mở cmd và run lần lượt các lệnh sau:
 
     chrome.exe --disable-web-security --user-data-dir="c:/ChromeDevSession"
 
-sau đó truy cập [http://127.0.0.1:5501/](http://127.0.0.1:5501/) ở cửa sổ chrome mới vừa được mở lên
+sau đó truy cập [http://127.0.0.1:5501/](http://127.0.0.1:5501/) ở cửa sổ chrome mới vừa được mở lên để vào web (luôn giữ terminal server chạy).
