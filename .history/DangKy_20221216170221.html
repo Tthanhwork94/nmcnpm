@@ -148,9 +148,9 @@
                 .then(function(res){
                     showToast("Đăng ký thành công!",'success');
                     setTimeout(function(){
-                        setLocalAccount(taikhoan.tentaikhoan);
+                        setLocalAccount(tentaikhoan);
                         window.location.href = "/khachhang_home.html";
-                    },1000);
+                    },2000);
                 })
                 .catch(function(error){
                     switch(error.response.status){
