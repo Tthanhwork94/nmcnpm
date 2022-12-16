@@ -248,17 +248,6 @@
                 showToast("lỗi thêm sản phẩm!",'error');
                 return;
             }
-
-            if(soluong.value<0){
-                showToast("số lượng phải lớn hơn 0!",'error');
-                return;
-            }
-
-            if(giamua.value<0){
-                showToast("giá phải lớn hơn 0!",'error');
-                return;
-            }
-
             let cart =JSON.parse(localStorage.getItem("cart"))
             let list=cart.list;
             if (checkexist(list,sanpham.masanpham)){
@@ -347,7 +336,7 @@
                 insertChiTietPhieuNhap(res.data)
             })
             .catch(function(error){
-                showToast("lỗi không thêm được phiếu nhập!",'error');
+                console.log(error);
             }); 
             console.log(phieunhap);
             

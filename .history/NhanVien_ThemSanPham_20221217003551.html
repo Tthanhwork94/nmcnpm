@@ -143,8 +143,8 @@
                             <input type="number" name="soluongton" id="soluongton" placeholder="Nhập số lượng tồn" />
                             <label for="giasanpham">Giá:</label>
                             <input type="number" name="giasanpham" id="giasanpham" placeholder="Nhập giá" />
-                            <label style="display: none" for="manhacungung">Nhà cung ứng:</label>
-                            <select style="display: none" id="ncu" class="form-control" aria-label=".form-select-sm example">`
+                            <label for="manhacungung">Nhà cung ứng:</label>
+                            <select id="ncu" class="form-control" aria-label=".form-select-sm example">`
 
             axios.get(localhost+"/api/nhacungung")
             .then(function(response){
@@ -168,26 +168,29 @@
             let tensanpham=document.getElementById("tensanpham");
             let soluongton=document.getElementById("soluongton");
             let giasanpham=document.getElementById("giasanpham");
-            // let nhacungung=document.getElementById("ncu");
+            let nhacungung=document.getElementById("ncu");
             let sanpham={
                 tensanpham:tensanpham.value,
                 soluongton:soluongton.value,
                 gia:giasanpham.value,
-                manhacungung:null
+                manhacungung:nhacungung.value
+            }
+            if(nhacungung.value==='-1'){
+                sanpham.manhacungung=null;
             }
 
-            
-            if(sanpham.tensanpham===''||sanpham.soluongton===''||sanpham.giasanpham===''){
-                showToast("Thiếu thông tin sản phẩm",'error');
-                return;
-            }
             if(soluongton.value<=0){
                 showToast("số lượng phải lớn hơn hoặc bằng 0!",'error');
                 return;
             }
 
-            if(giasanpham.value<0){
+            if(gia.value<0){
                 showToast("giá phải lớn hơn 0!",'error');
+                return;
+            }
+
+            if(sanpham.tensanpham===''||sanpham.soluongton===''||sanpham.giasanpham===''){
+                showToast("Thiếu thông tin sản phẩm",'error');
                 return;
             }
             axios.post(localhost+"/api/sanpham",sanpham)

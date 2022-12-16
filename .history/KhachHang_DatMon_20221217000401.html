@@ -391,18 +391,14 @@
             .then(function(res){
                 if(res.data==1){
                     showToast("Đặt hàng thành công!",'success');
-                    renderCart();
                     cart.list=[];
                     cart.tongtien=0;
                     localStorage.setItem("cart",JSON.stringify(cart));
-                    getSanPham(indexPage=1)
+                    renderCart();
                     close_model();
                 }else{
                     showToast("Đặt hàng thất bại!",'error');
                 }
-            })
-            .catch(function(error){
-                showToast("đặt hàng không thành công! lỗi số lượng!",'error');
             })
         }
     </script>
