@@ -134,21 +134,13 @@
                 <div class="col-xs-12 col-md-6 col-md-offset-4">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <button onclick="close_modal_thanhtoan()" type="button" class="btn btn-secondary close-footer">Đóng</button>
-                            <div id="madonhang"></div>
-                            <!-- <div id="sotienthanhtoan"></div> -->
-                            <!-- <div class="row">
+                            <div class="row">
                                 <h3 class="text-center">Payment Details</h3>
                                 <div class="inlineimage"> <img class="img-responsive images" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Mastercard-Curved.png"> <img class="img-responsive images" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Discover-Curved.png"> <img class="img-responsive images" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Paypal-Curved.png"> <img class="img-responsive images" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/American-Express-Curved.png"> </div>
-                            </div> -->
+                            </div>
                         </div>
                         <div class="panel-body">
                             <form role="form">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="form-group"> <label>Giá trị đơn hàng</label> <input id="sotienthanhtoan" type="text" class="form-control" placeholder="Card Owner Name" disabled/> </div>
-                                    </div>
-                                </div>
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="form-group"> <label>CARD NUMBER</label>
@@ -169,18 +161,13 @@
                                         <div class="form-group"> <label>CARD OWNER</label> <input type="text" class="form-control" placeholder="Card Owner Name" /> </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="form-group"> <label>Số tiền</label> <input id="sotientra" type="number" class="form-control" placeholder="số tiền thanh toán" min="0" /> </div>
-                                    </div>
-                                </div>
                             </form>
                         </div>
-                        <div  class="panel-footer">
+                        <div class="panel-footer">
                             <div class="row">
-                                <div class="col-xs-12"> <button onclick="thanhtoan()" style=" line-height: 3;" class="btn btn-success btn-lg btn-block" type="button" >Confirm Payment</button> </div>
+                                <div class="col-xs-12"> <button class="btn btn-success btn-lg btn-block">Confirm Payment</button> </div>
                             </div>
-                        </div>   
+                        </div>
                     </div>
                 </div>
             </div>
@@ -271,7 +258,7 @@
                                 <td>${value.tongtien}</td>
                                 <td>chưa thanh toán</td>
                                 <td><a onclick="open_model(${value.madondathang})" style="cursor:pointer">xem chi tiết</a></td>
-                                <td><button onclick="open_model_thanhtoan(${value.madondathang},${value.tongtien})" type="button" class="btn btn-primary">Thanh Toán</button></td>
+                                <td><button onclick="giaohang(${value.madondathang})" type="button" class="btn btn-primary">Thanh Toán</button></td>
                             </tr>
                     `
                 }else if(value.tinhtrangdon==='chưa giao'){
@@ -345,48 +332,22 @@
 
 
 
-
-
-        function close_modal_thanhtoan(){
-            document.getElementById("model_payment").style.display="none";
-        }
-        //thanh toán
-        function open_model_thanhtoan(madonhang,tongtien){
-            document.getElementById("madonhang").value=madonhang;
-            document.getElementById("sotienthanhtoan").value=tongtien
+        function open_modal_thanhtoan(){
             document.getElementById("model_payment").style.display="block";
         }
-
-        function thanhtoan(){
-            //so tiền nhập 
-            let sotientra=document.getElementById("sotientra").value
-            let madonhang=document.getElementById("madonhang").value;
-            // giá trị đơn hàng
-            let sotienthanhtoan= document.getElementById("sotienthanhtoan").value;
-
-            if(sotientra==='' || !sotientra){
-                    showToast("vui lòng nhập thông tin đầy đủ!",'error');
-                    return; 
-                }
-            if(sotientra<sotienthanhtoan ){
-                showToast("không đủ tiền thanh toán!",'error');
-                return;
-            }else{
-
-                let thongtin={
-                    madondathang:madonhang
-                }
-                axios.put(localhost+"/api/dondathang/thanhtoan",thongtin)
-                .then(res=>{
-                    showToast("thanh toán thành công!",'success');
-                    document.getElementById("sotientra").value='';
-                    getDonHang();
-                    close_modal_thanhtoan();
-                })
-                .catch(error=>{
-                    showToast("thanh toán thất bại!",'error');
-                })
+        //thanh toán
+        function giaohang(madonhang){
+            let thongtin={
+                madondathang:madonhang
             }
+            axios.put(localhost+"/api/dondathang/thanhtoan",thongtin)
+            .then(res=>{
+                getDonHang();
+                showToast("thanh toán thành công!",'success');
+            })
+            .catch(error=>{
+                showToast("thanh toán thất bại!",'error');
+            })
         }
     </script>
 </body>

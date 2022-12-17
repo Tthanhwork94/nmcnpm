@@ -130,8 +130,6 @@
                 </div>
             </div>      
     </div>
-
-    
     </div>
     <!-- Footer -->
     <div class="footer">
@@ -358,12 +356,6 @@
 
             if(!Boolean(thoigiannhan.value) || thoigiannhan.value===''){
                 showToast("thiếu thời gian nhận dự kiến!",'error');
-                return;
-            }
-            let cart = JSON.parse(localStorage.getItem("cart"));
-            let list=cart.list;
-            if(list.length==0){
-                showToast("giỏ hàng rỗng!",'error');
                 return;
             }
 

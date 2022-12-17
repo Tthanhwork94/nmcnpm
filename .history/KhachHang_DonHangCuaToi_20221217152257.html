@@ -120,73 +120,53 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 
-
-
-    <div id="model_payment" class="modal">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-md-6 col-md-offset-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <button onclick="close_modal_thanhtoan()" type="button" class="btn btn-secondary close-footer">Đóng</button>
-                            <div id="madonhang"></div>
-                            <!-- <div id="sotienthanhtoan"></div> -->
-                            <!-- <div class="row">
-                                <h3 class="text-center">Payment Details</h3>
-                                <div class="inlineimage"> <img class="img-responsive images" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Mastercard-Curved.png"> <img class="img-responsive images" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Discover-Curved.png"> <img class="img-responsive images" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Paypal-Curved.png"> <img class="img-responsive images" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/American-Express-Curved.png"> </div>
-                            </div> -->
-                        </div>
-                        <div class="panel-body">
-                            <form role="form">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="form-group"> <label>Giá trị đơn hàng</label> <input id="sotienthanhtoan" type="text" class="form-control" placeholder="Card Owner Name" disabled/> </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="form-group"> <label>CARD NUMBER</label>
-                                            <div class="input-group"> <input type="tel" class="form-control" placeholder="Valid Card Number" /> <span class="input-group-addon"><span class="fa fa-credit-card"></span></span> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-7 col-md-7">
-                                        <div class="form-group"> <label><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label> <input type="tel" class="form-control" placeholder="MM / YY" /> </div>
-                                    </div>
-                                    <div class="col-xs-5 col-md-5 pull-right">
-                                        <div class="form-group"> <label>CV CODE</label> <input type="tel" class="form-control" placeholder="CVC" /> </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="form-group"> <label>CARD OWNER</label> <input type="text" class="form-control" placeholder="Card Owner Name" /> </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="form-group"> <label>Số tiền</label> <input id="sotientra" type="number" class="form-control" placeholder="số tiền thanh toán" min="0" /> </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div  class="panel-footer">
-                            <div class="row">
-                                <div class="col-xs-12"> <button onclick="thanhtoan()" style=" line-height: 3;" class="btn btn-success btn-lg btn-block" type="button" >Confirm Payment</button> </div>
+    <button type="button" class="btn btn-primary launch" data-toggle="modal" data-target="#staticBackdrop"> <i class="fa fa-rocket"></i> Pay Now
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+       <div class="modal-dialog">
+          <div class="modal-content">
+             <div class="modal-body">
+                <div class="text-right"> <i class="fa fa-close close" data-dismiss="modal"></i> </div>
+                <div class="tabs mt-3">
+                   <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item" role="presentation"> <a class="nav-link active" id="visa-tab" data-toggle="tab" href="#visa" role="tab" aria-controls="visa" aria-selected="true"> <img src="https://i.imgur.com/sB4jftM.png" width="80"> </a> </li>
+                      <li class="nav-item" role="presentation"> <a class="nav-link" id="paypal-tab" data-toggle="tab" href="#paypal" role="tab" aria-controls="paypal" aria-selected="false"> <img src="https://i.imgur.com/yK7EDD1.png" width="80"> </a> </li>
+                   </ul>
+                   <div class="tab-content" id="myTabContent">
+                      <div class="tab-pane fade show active" id="visa" role="tabpanel" aria-labelledby="visa-tab">
+                         <div class="mt-4 mx-4">
+                            <div class="text-center">
+                               <h5>Credit card</h5>
                             </div>
-                        </div>   
-                    </div>
+                            <div class="form mt-3">
+                               <div class="inputbox"> <input type="text" name="name" class="form-control" required="required"> <span>Cardholder Name</span> </div>
+                               <div class="inputbox"> <input type="text" name="name" min="1" max="999" class="form-control" required="required"> <span>Card Number</span> <i class="fa fa-eye"></i> </div>
+                               <div class="d-flex flex-row">
+                                  <div class="inputbox"> <input type="text" name="name" min="1" max="999" class="form-control" required="required"> <span>Expiration Date</span> </div>
+                                  <div class="inputbox"> <input type="text" name="name" min="1" max="999" class="form-control" required="required"> <span>CVV</span> </div>
+                               </div>
+                               <div class="px-5 pay"> <button class="btn btn-success btn-block">Add card</button> </div>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="tab-pane fade" id="paypal" role="tabpanel" aria-labelledby="paypal-tab">
+                         <div class="px-5 mt-5">
+                            <div class="inputbox"> <input type="text" name="name" class="form-control" required="required"> <span>Paypal Email Address</span> </div>
+                            <div class="pay px-5"> <button class="btn btn-primary btn-block">Add paypal</button> </div>
+                         </div>
+                      </div>
+                   </div>
                 </div>
-            </div>
-        </div>
+             </div>
+          </div>
+       </div>
     </div>
-    
     <!-- Footer -->
     <div class="footer">
         <div class="container">
@@ -271,7 +251,7 @@
                                 <td>${value.tongtien}</td>
                                 <td>chưa thanh toán</td>
                                 <td><a onclick="open_model(${value.madondathang})" style="cursor:pointer">xem chi tiết</a></td>
-                                <td><button onclick="open_model_thanhtoan(${value.madondathang},${value.tongtien})" type="button" class="btn btn-primary">Thanh Toán</button></td>
+                                <td><button onclick="giaohang(${value.madondathang})" type="button" class="btn btn-primary">Thanh Toán</button></td>
                             </tr>
                     `
                 }else if(value.tinhtrangdon==='chưa giao'){
@@ -344,49 +324,18 @@
         }
 
 
-
-
-
-        function close_modal_thanhtoan(){
-            document.getElementById("model_payment").style.display="none";
-        }
-        //thanh toán
-        function open_model_thanhtoan(madonhang,tongtien){
-            document.getElementById("madonhang").value=madonhang;
-            document.getElementById("sotienthanhtoan").value=tongtien
-            document.getElementById("model_payment").style.display="block";
-        }
-
-        function thanhtoan(){
-            //so tiền nhập 
-            let sotientra=document.getElementById("sotientra").value
-            let madonhang=document.getElementById("madonhang").value;
-            // giá trị đơn hàng
-            let sotienthanhtoan= document.getElementById("sotienthanhtoan").value;
-
-            if(sotientra==='' || !sotientra){
-                    showToast("vui lòng nhập thông tin đầy đủ!",'error');
-                    return; 
-                }
-            if(sotientra<sotienthanhtoan ){
-                showToast("không đủ tiền thanh toán!",'error');
-                return;
-            }else{
-
-                let thongtin={
-                    madondathang:madonhang
-                }
-                axios.put(localhost+"/api/dondathang/thanhtoan",thongtin)
-                .then(res=>{
-                    showToast("thanh toán thành công!",'success');
-                    document.getElementById("sotientra").value='';
-                    getDonHang();
-                    close_modal_thanhtoan();
-                })
-                .catch(error=>{
-                    showToast("thanh toán thất bại!",'error');
-                })
+        function giaohang(madonhang){
+            let thongtin={
+                madondathang:madonhang
             }
+            axios.put(localhost+"/api/dondathang/thanhtoan",thongtin)
+            .then(res=>{
+                getDonHang();
+                showToast("thanh toán thành công!",'success');
+            })
+            .catch(error=>{
+                showToast("thanh toán thất bại!",'error');
+            })
         }
     </script>
 </body>

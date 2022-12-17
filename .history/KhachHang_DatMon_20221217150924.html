@@ -130,8 +130,6 @@
                 </div>
             </div>      
     </div>
-
-    
     </div>
     <!-- Footer -->
     <div class="footer">
@@ -360,12 +358,6 @@
                 showToast("thiếu thời gian nhận dự kiến!",'error');
                 return;
             }
-            let cart = JSON.parse(localStorage.getItem("cart"));
-            let list=cart.list;
-            if(list.length==0){
-                showToast("giỏ hàng rỗng!",'error');
-                return;
-            }
 
             let thongtin={
                 thoigiannhan:new Date(thoigiannhan.value).toISOString().slice(0, 19).replace('T', ' ')+".000",
@@ -377,7 +369,7 @@
                 insertDonChiTiet(res.data);
             })
             .catch(error=>{
-                showToast("Đặt hàng thất bại, thời gian không phù hợp!",'error');
+                showToast("Đặt hàng thất bại!",'error');
                 console.log(error);
             })
         }

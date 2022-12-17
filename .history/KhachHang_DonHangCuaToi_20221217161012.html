@@ -146,14 +146,14 @@
                             <form role="form">
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <div class="form-group"> <label>Giá trị đơn hàng</label> <input id="sotienthanhtoan" type="text" class="form-control" placeholder="Card Owner Name" disabled/> </div>
+                                        <div class="form-group"> <label>CARD NUMBER</label>
+                                            <div class="input-group"> <input type="tel" class="form-control" placeholder="Valid Card Number" /> <span class="input-group-addon"><span class="fa fa-credit-card"></span></span> </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <div class="form-group"> <label>CARD NUMBER</label>
-                                            <div class="input-group"> <input type="tel" class="form-control" placeholder="Valid Card Number" /> <span class="input-group-addon"><span class="fa fa-credit-card"></span></span> </div>
-                                        </div>
+                                        <div class="form-group"> <label>Giá trị đơn hàng</label> <input id="sotienthanhtoan" type="text" class="form-control" placeholder="Card Owner Name" /> </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -364,15 +364,10 @@
             // giá trị đơn hàng
             let sotienthanhtoan= document.getElementById("sotienthanhtoan").value;
 
-            if(sotientra==='' || !sotientra){
-                    showToast("vui lòng nhập thông tin đầy đủ!",'error');
-                    return; 
-                }
-            if(sotientra<sotienthanhtoan ){
+            if(sotientra<sotienthanhtoan){
                 showToast("không đủ tiền thanh toán!",'error');
                 return;
             }else{
-
                 let thongtin={
                     madondathang:madonhang
                 }

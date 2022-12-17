@@ -364,15 +364,10 @@
             // giá trị đơn hàng
             let sotienthanhtoan= document.getElementById("sotienthanhtoan").value;
 
-            if(sotientra==='' || !sotientra){
-                    showToast("vui lòng nhập thông tin đầy đủ!",'error');
-                    return; 
-                }
-            if(sotientra<sotienthanhtoan ){
+            if(sotientra<sotienthanhtoan || sotientra==='' || !sotientra){
                 showToast("không đủ tiền thanh toán!",'error');
                 return;
             }else{
-
                 let thongtin={
                     madondathang:madonhang
                 }
