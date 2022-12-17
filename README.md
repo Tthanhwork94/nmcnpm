@@ -105,6 +105,8 @@ spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.SQLServer2012Dia
  
 # cài đặt chương trình
 
+nếu chưa có maven hãy cài đặt [tại đây](https://stackjava.com/install/maven-phan-1-maven-la-gi-cai-dat-maven.html)
+
 install mvn
 
 > nếu trong folder QuanLyCanTeen\target có 2 file .jar thì hãy xóa đi
