@@ -366,12 +366,12 @@
                 showToast("giỏ hàng rỗng!",'error');
                 return;
             }
-            
+
             let thongtin={
-                thoigiannhan:thoigiannhan.value.slice(0,10) +' '+ thoigiannhan.value.slice(11,17)+':00',
+                thoigiannhan:new Date(thoigiannhan.value).toISOString().slice(0, 10).replace('T', ' ')+".000",
                 makhachhang:makhachhang
             }
-            console.log(thongtin.thoigiannhan);
+            console.log(thongtin);
             axios.post(localhost+"/api/dondathang",thongtin)
             .then(res=>{
                 insertDonChiTiet(res.data);
